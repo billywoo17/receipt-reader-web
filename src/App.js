@@ -4,10 +4,10 @@ import './App.css';
 class App extends Component {
     constructor(props) {
     super(props);
-    this.state = {value: ''};
-
+    this.state = {value: '', result:{parsedtext:'nothing yet'}};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getResult = this.getResult.bind(this)
   }
 
   handleChange(event) {
@@ -29,16 +29,28 @@ class App extends Component {
     event.preventDefault();
   }
 
+  getResult(event) {
+     fetch('/image')
+      .then(res => res.json())
+      .then(result => this.setState({ result }));
+  }
+
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          imageurl:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-      <h1></h1>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            imageurl:
+            <input type="text" value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+        <button  onClick={this.getResult}>
+        Get result
+        </button>
+        <div>{this.state.result.parsedtext}
+        </div>
+      </div>
     );
   }
 }
