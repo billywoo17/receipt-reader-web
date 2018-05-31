@@ -10,8 +10,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "mocha",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://localhost:8080",
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "webpack-config": "^7.5.0",
+    "webpack-dev-server": "^3.1.4"
   }
+}
