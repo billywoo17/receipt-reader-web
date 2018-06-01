@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import {Link} from 'react-router-dom';
 class App extends Component {
   state = {receipts: []}
 
@@ -21,30 +21,30 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Receipts</h1>
-        <table align="center">
-        <tbody>
-        <tr>
-          <th>User</th>
-          <th>Created Date</th>
-          <th>location</th>
-          <th>Total</th>
-          <th>Status</th>
-          <th>Approved By</th>
-        </tr>
+        <Link to={`/`}>Login</Link>
+        <div>
+          User
+          Created Date
+          location
+          Total
+          Status
+          Approved By
+          </div>
+
         {this.state.receipts.map(receipt =>
-          <tr key={receipt.id}>
-          <td>{receipt.user}</td>
-          <td>{receipt.created_at}</td>
-          <td>{receipt.location}</td>
-          <td>${receipt.total}</td>
-          <td>{receipt.status}</td>
-          <td>{receipt.approve_by}</td>
-          </tr>
+          <div> 
+          {receipt.id}         
+          {receipt.user}
+          {receipt.created_at}
+          {receipt.location}
+          ${receipt.total}
+          {receipt.status}
+          {receipt.approve_by}
+          </div>
         )}
-        </tbody>
-        </table>
         Total: ${this.total(this.state.receipts)}
       </div>
+
     );
   }
 }
