@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import {Link} from 'react-router-dom';
+import Moment from 'react-moment';
 
 class App extends Component {
   state = {receipts: []}
@@ -21,30 +23,30 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Receipts</h1>
-        <table align="center">
-        <tbody>
-        <tr>
-          <th>User</th>
-          <th>Created Date</th>
-          <th>location</th>
-          <th>Total</th>
-          <th>Status</th>
-          <th>Approved By</th>
-        </tr>
+        <Link to={`/`}>Login</Link>
+        <div>
+          Project
+          Full Name
+          Created Date
+          location
+          Total
+          Status
+          Approved By
+          </div>
         {this.state.receipts.map(receipt =>
-          <tr key={receipt.id}>
-          <td>{receipt.user}</td>
-          <td>{receipt.created_at}</td>
-          <td>{receipt.location}</td>
-          <td>${receipt.total}</td>
-          <td>{receipt.status}</td>
-          <td>{receipt.approve_by}</td>
-          </tr>
+          <div>     
+          {receipt.project_name} 
+          {receipt.first_name} {receipt.last_name} 
+          <Moment format="DD/MM/YYYY">{receipt.date}</Moment> 
+          {receipt.location} 
+          ${parseFloat(receipt.total/100).toFixed(2)} 
+          {receipt.status_name} 
+          {receipt.approved_first_name} {receipt.approved_last_name} 
+          </div>
         )}
-        </tbody>
-        </table>
-        Total: ${this.total(this.state.receipts)}
+        Total: ${parseFloat(this.total(this.state.receipts)/100).toFixed(2)}
       </div>
+
     );
   }
 }
