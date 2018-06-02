@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import {Link} from 'react-router-dom';
+import Moment from 'react-moment';
+
 class App extends Component {
   state = {receipts: []}
 
@@ -23,26 +25,26 @@ class App extends Component {
         <h1>Receipts</h1>
         <Link to={`/`}>Login</Link>
         <div>
-          User
+          Project
+          Full Name
           Created Date
           location
           Total
           Status
           Approved By
           </div>
-
         {this.state.receipts.map(receipt =>
-          <div> 
-          {receipt.id}         
-          {receipt.user}
-          {receipt.created_at}
-          {receipt.location}
-          ${receipt.total}
-          {receipt.status}
-          {receipt.approve_by}
+          <div>     
+          {receipt.project_name} 
+          {receipt.first_name} {receipt.last_name} 
+          <Moment format="DD/MM/YYYY">{receipt.date}</Moment> 
+          {receipt.location} 
+          ${parseFloat(receipt.total/100).toFixed(2)} 
+          {receipt.status_name} 
+          {receipt.approved_first_name} {receipt.approved_last_name} 
           </div>
         )}
-        Total: ${this.total(this.state.receipts)}
+        Total: ${parseFloat(this.total(this.state.receipts)/100).toFixed(2)}
       </div>
 
     );
