@@ -31,7 +31,7 @@ class App extends Component {
           location
           Total
           Status
-          Approved By
+          Description
           </div>
         {this.state.receipts.map(receipt =>
           <div>     
@@ -41,7 +41,7 @@ class App extends Component {
           {receipt.location} 
           ${parseFloat(receipt.total/100).toFixed(2)} 
           {receipt.status_name} 
-          {receipt.approved_first_name} {receipt.approved_last_name} 
+          {receipt.description}
           </div>
         )}
         Total: ${parseFloat(this.total(this.state.receipts)/100).toFixed(2)}
