@@ -34,15 +34,16 @@ class App extends Component {
           Description
           </div>
         {this.state.receipts.map(receipt =>
-          <div>     
-          {receipt.project_name} 
-          {receipt.first_name} {receipt.last_name} 
-          <Moment format="DD/MM/YYYY">{receipt.date}</Moment> 
-          {receipt.location} 
-          ${parseFloat(receipt.total/100).toFixed(2)} 
-          {receipt.status_name} 
-          {receipt.description}
-          </div>
+          <ul className="mdc-list mdc-list--two-line">
+            <li className="mdc-list-item">
+              <span className="mdc-list-item__text">
+              ${parseFloat(receipt.total/100).toFixed(2)}
+                <span className="mdc-list-item__secondary-text">
+                <Moment format="DD/MM/YYYY">{receipt.date}</Moment> / {receipt.location}
+                </span>
+              </span>
+            </li>
+          </ul>
         )}
         Total: ${parseFloat(this.total(this.state.receipts)/100).toFixed(2)}
       </div>
