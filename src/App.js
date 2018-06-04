@@ -34,11 +34,11 @@ class App extends Component {
           Description
           </div>
         {this.state.receipts.map(receipt =>
-          <ul class="mdc-list mdc-list--two-line">
-            <li class="mdc-list-item">
-              <span class="mdc-list-item__text">
+          <ul className="mdc-list mdc-list--two-line">
+            <li className="mdc-list-item">
+              <span className="mdc-list-item__text">
               ${parseFloat(receipt.total/100).toFixed(2)}
-                <span class="mdc-list-item__secondary-text">
+                <span className="mdc-list-item__secondary-text">
                 <Moment format="DD/MM/YYYY">{receipt.date}</Moment> / {receipt.location}
                 </span>
               </span>
