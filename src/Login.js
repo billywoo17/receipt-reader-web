@@ -9,25 +9,31 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="loginMain">
+      <section className="hello">
+        <div className="loginMain">
 
-        <div className="loginHeader">
-          <i className="fas fa-receipt"></i>
-          Paperless
+          <div className="loginHeader">
+            <i className="fas fa-receipt"></i>
+            Paperless
+          </div>
+
+
+          <input placeholder="Username" type="text" id="text-field-" className="username mdc-text-field__input"/>
+          <input placeholder="Password" type="text" id="text-field-" className="password mdc-text-field__input"/>
+
+          <div className="loginButton">
+            <button type="button" className="btn btn-lg GreenSignIn">Sign In</button>
+
+            <button type="button" className="btn btn-outline-light btn-lg">Sign In</button>
+          </div>
+
+
         </div>
+          <section className="slide-in-bottom">
+          GRASSSSSSSSSSSSSS
+          </section>
 
-
-        <input placeholder="Username" type="text" id="text-field-" className="username mdc-text-field__input"/>
-        <input placeholder="Password" type="text" id="text-field-" className="password mdc-text-field__input"/>
-
-        <div className="loginButton">
-          <button type="button" class="btn btn-lg GreenSignIn">Sign In</button>
-
-          <button type="button" className="btn btn-outline-light btn-lg">Sign In</button>
-        </div>
-
-
-      </div>
+    </section>
     )
   }
 }
