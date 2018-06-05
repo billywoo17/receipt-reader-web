@@ -22,25 +22,38 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className ="flex-element">
       <div className= "title">
-        <h1> Receipts </h1>
+      <h1 className = "app-name"> <i class="fas fa-receipt"></i> Your Receipts </h1>
       </div>
+<nav class="drawer mdc-drawer mdc-drawer--permanent">
+  <div class="mdc-drawer__toolbar-spacer">
+  <h4> Projects </h4>
+  </div>
+  <div class="mdc-drawer__content">
+    <nav class="mdc-list">
+      <a class="mdc-list-item"> Inbox </a>
+      <a class="mdc-list-item"> Star </a>
+    </nav>
+  </div>
+</nav>
       <div className="App">
+      <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list">
         {this.state.receipts.map(receipt =>
-          <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list">
-            <li className="mdc-list-item">
+          <li className="mdc-list-item mdc-ripple-upgraded">
             <i className="fas fa-check-circle mdc-list-item__graphic green"></i>
-              <span className="mdc-list-item__text">
-              ${parseFloat(receipt.total/100).toFixed(2)}
+            <span className="mdc-list-item__text" >
+                <Moment format="DD/MM/YYYY">{receipt.date}</Moment>
                 <span className="mdc-list-item__secondary-text">
-                <Moment format="DD/MM/YYYY">{receipt.date}</Moment> - {receipt.location}
+                  {receipt.location} - {receipt.description}
                 </span>
               </span>
-              <i className="fas fa-info-circle mdc-list-item__meta"></i>
-              </li>
-          </ul>
+            <span className="mdc-list-item__meta">
+            ${parseFloat(receipt.total/100).toFixed(2)}
+            </span>
+          </li>
         )}
+        </ul>
         <div className="total">Total: ${parseFloat(this.total(this.state.receipts)/100).toFixed(2)}
         </div>
       </div>
