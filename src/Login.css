@@ -1423,32 +1423,26 @@ div.loginMain {
     color: white; }
 
 .mdc-text-field__input {
-  color: white; }
+  color: white;
+  padding: 1em; }
 
-.GreenSignIn {
+.signInButton {
   background-color: SandyBrown;
   color: white; }
 
-.GreenSignIn:hover {
+.signInButton:hover {
   background-color: wheat;
   color: burlywood; }
 
 .loginMain:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
 
-/*.grassContainer {
-  position: absolute;
-  bottom: 0;
-  height: 5vw;
-  width: 100vw;
-}
-*/
 .slide-in-bottom {
   position: absolute;
   bottom: 0;
   height: 5vw;
   width: 100vw;
-  background-color: green;
+  background-color: #01FE2B;
   -webkit-animation: slide-in-bottom 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 
 @-webkit-keyframes slide-in-bottom {

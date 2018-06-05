@@ -55,13 +55,13 @@ div.loginMain {
 
 .mdc-text-field__input {
   color: white;
-
+  padding: 1em;
 }
-.GreenSignIn {
+.signInButton {
   background-color: SandyBrown;
   color: white;
 }
-.GreenSignIn:hover {
+.signInButton:hover {
   background-color: wheat;
   color: burlywood;
 }
@@ -71,19 +71,12 @@ div.loginMain {
 
 }
 
-/*.grassContainer {
-  position: absolute;
-  bottom: 0;
-  height: 5vw;
-  width: 100vw;
-}
-*/
 .slide-in-bottom {
   position: absolute;
   bottom: 0;
   height: 5vw;
   width: 100vw;
-  background-color: green;
+  background-color: #01FE2B;
   -webkit-animation: slide-in-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
