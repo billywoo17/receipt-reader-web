@@ -703,3 +703,6 @@ a.mdc-list-item {
 .app-name {
   padding: 5px 25px;
   margin: 10px; }
+
+.modal {
+  margin: 100px; }
