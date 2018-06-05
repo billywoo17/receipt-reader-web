@@ -14,9 +14,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('/receipts')
-      .then(res => res.json())
-      .then(receipts => this.setState({ receipts }));
+   let token = localStorage.getItem('jwtToken')
+    console.log("token: ", token)
+    fetch('http://10.30.32.255:8080/users/receipts', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(res => res.json())
+    .then(receipts => this.setState({ receipts }));
   }
 
   total(receiptsArr){
@@ -32,6 +40,7 @@ render() {
       <div className ="flex-element">
         <div className= "title">
           <h1 className = "app-name"> <i class="fas fa-receipt"></i> Paperless</h1>
+          <h4 className = "user-info"> Hi, User </h4>
         </div>
         <nav className="drawer mdc-drawer mdc-drawer--permanent">
           <div className="mdc-drawer__toolbar-spacer">
@@ -62,7 +71,8 @@ class Receipt extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalOpen: false
+      isModalOpen: false,
+      categories: []
     }
     this.toggleModal = this.toggleModal.bind(this);
   }
@@ -74,10 +84,22 @@ class Receipt extends Component {
   }
 
   render() {
-    const { id, date, location, description, total, image_url} = this.props;
+
+    function statusCheck (status) {
+      if (status === 1) {
+        return <i className="fas fa-check-circle mdc-list-item__graphic green"></i>
+      } else if (status === 2) {
+        return <i className="fas fa-ellipsis-h mdc-list-item__graphic orange"></i>
+      } else if (status === 3) {
+        return <i className="fas fa-exclamation-triangle mdc-list-item__graphic red"></i>
+      }
+    };
+
+    const { id, date, location, description, total, image_url, status_id} = this.props;
+
     return (
-      <li className="mdc-list-item mdc-ripple-upgraded" key = {id} onClick={ this.toggleModal }>
-        <i className="fas fa-check-circle mdc-list-item__graphic green"></i>
+      <li className="mdc-list-item mdc-ripple-surface" key = {id} onClick={ this.toggleModal }>
+        {statusCheck(status_id)}
         <span className="mdc-list-item__text" >
           <Moment format="DD/MM/YYYY">{date}</Moment>
             <span className="mdc-list-item__secondary-text">
@@ -88,13 +110,24 @@ class Receipt extends Component {
           ${parseFloat(total/100).toFixed(2)}
         </span>
          <ReactModal
-          className="modal"
+          className="modal flex-element"
           isOpen={this.state.isModalOpen}
-          contentLabel="Minimal Modal Example"
+          contentLabel="Modal"
           >
-          <button onClick={this.toggleModal}>Close Modal</button>
-          <p>{id}</p>
-          <img src={image_url} alt="demo"/>
+          <div className="modal-list">
+            <h2 className="list-align">Details</h2>
+            <ul className="mdc-list">
+              <li className="mdc-list-item">Purchased date: <Moment format="DD/MM/YYYY">{date}</Moment></li>
+              <li className="mdc-list-item">Location: {location}</li>
+              <li className="mdc-list-item">Description: {description}</li>
+              <li className="mdc-list-item">Amount: ${parseFloat(total/100).toFixed(2)}</li>
+              <li className="mdc-list-item">Status: {status_id}</li>
+            </ul>
+            <button className="mdc-button mdc-button--raised list-align" onClick={this.toggleModal}>Close</button>
+          </div>
+          <div className="modal-pic">
+            <img src={image_url} alt="demo"/>
+          </div>
         </ReactModal>
       </li>
     )
