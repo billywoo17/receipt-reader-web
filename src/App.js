@@ -14,10 +14,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-   let token = localStorage.getItem('jwtToken')
-   console.log(token)
-    console.log(token, "3")
-    fetch('http://10.30.32.255:8080/users/receipts', {
+    let token = localStorage.getItem('jwtToken');
+    fetch('http://10.30.32.255:8080/user/receipts', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +24,8 @@ class App extends Component {
     })
     .then(res => res.json())
     .then(receipts => this.setState({ receipts }));
-  }
+   }
+
 
   total(receiptsArr){
     var sum = 0;
@@ -88,11 +87,11 @@ class Receipt extends Component {
 
     function statusCheck (status) {
       if (status === 1) {
-        return <i className="fas fa-check-circle mdc-list-item__graphic green"></i>
+        return <i className="fas fa-check-circle mdc-list-item__graphic text-success"></i>
       } else if (status === 2) {
-        return <i className="fas fa-ellipsis-h mdc-list-item__graphic orange"></i>
+        return <i className="fas fa-ellipsis-h mdc-list-item__graphic orange text-warning"></i>
       } else if (status === 3) {
-        return <i className="fas fa-exclamation-triangle mdc-list-item__graphic red"></i>
+        return <i className="fas fa-exclamation-triangle mdc-list-item__graphic text-danger"></i>
       }
     };
 

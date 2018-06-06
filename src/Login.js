@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import {Link} from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Redirect} from 'react-router-dom'
 
 
@@ -15,7 +15,7 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      password: "",
+      password: ""
     }
   }
 
@@ -34,25 +34,27 @@ class Login extends Component {
       password: this.state.password,
     });
     console.log('abody', aBody);
-    fetch('http://10.30.32.255:8080/users/login', {
+    fetch('http://10.30.32.255:8080/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: aBody,
     })
-    .then((response) => {
-      if(response.status === 200){
+    .then(response => {
+      if (response.status === 200) {
         response.json()
-         .then(value => {
-            console.log(response)
-            localStorage.setItem('jwtToken', response)
-            this.props.history.push('/users')
-            }
-          )
-    }})
+                .then(value => {
+                  localStorage.setItem('jwtToken', value.token)
+                  this.props.history.push('/users')
+                  let newToken = localStorage.getItem('jwtToken')
+                })
+      } else {
+        alert("Invalid Login");
+      }
+    })
     .catch((err) =>{
-      alert("Can't connect to the server")
+      alert("Can't connect to the server", err)
 
     })
   }
@@ -60,36 +62,23 @@ class Login extends Component {
 
   render() {
 
-
-
-
-
     return (
       <section className="hello">
-        <div className="loginMain">
-
-
-          <div className="loginHeader">
-            <i className="fas fa-receipt"></i>
-            Paperless
-          </div>
-
-
-          <input placeholder="Email" type="text" id="text-field-" onChange={this.email_input} className="email mdc-text-field__input"/>
-
-          <input placeholder="Password" type="password" id="text-field-" onChange={this.password_input} className="password mdc-text-field__input"/>
-
-
-          <div className="loginButton">
-            <button type="button" className="btn btn-lg signInButton" onClick={this.submitForm}>Sign In</button>
-          </div>
-
-        </div>
-        <section className="slide-in-bottom">
-
-        </section>
-
-    </section>
+         <div className="loginMain">
+            <div className="loginHeader">
+               <i className="fas fa-receipt"></i>
+               Paperless
+            </div>
+            <input placeholder="Email" type="text" onChange={this.email_input} className="email mdc-text-field__input"/>
+            <input placeholder="Password" type="password" onChange={this.password_input} className="password mdc-text-field__input"/>
+            <div className="loginButton">
+               <button type="button" className="btn btn-lg signInButton" onClick={this.submitForm}>Sign In</button>
+               <button type="button" className="btn btn-outline-light btn-lg" onClick={this.submitForm}>Sign In</button>
+            </div>
+         </div>
+         <section className="slide-in-bottom">
+         </section>
+      </section>
     )
   }
 }

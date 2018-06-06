@@ -1389,6 +1389,13 @@ a.mdc-list-item {
   font-size: .8125rem;
   line-height: 32px; }
 
+<<<<<<< HEAD
+=======
+.hello {
+  height: 100vh;
+  width: 100vw; }
+
+>>>>>>> 7e20b64c7266e4ff12dc1b229625a78bca2ec26b
 div.loginMain {
   position: absolute;
   top: 50%;
@@ -1430,20 +1437,25 @@ div.loginMain {
 .loginMain:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
 
-.slide-in-bottom {
+/*.slide-in-bottom {
   position: absolute;
   bottom: 0;
   height: 5vw;
   width: 100vw;
   background-color: #01FE2B;
-  -webkit-animation: slide-in-bottom 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+  -webkit-animation: slide-in-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
 
 @-webkit-keyframes slide-in-bottom {
   0% {
     -webkit-transform: translateY(1000px);
-    transform: translateY(1000px);
-    opacity: 0; }
+            transform: translateY(1000px);
+    opacity: 0;
+  }
   100% {
     -webkit-transform: translateY(0);
-    transform: translateY(0);
-    opacity: 1; } }
+            transform: translateY(0);
+    opacity: 1;
+  }
+}*/
