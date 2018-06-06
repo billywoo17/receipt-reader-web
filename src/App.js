@@ -17,7 +17,7 @@ class App extends Component {
 
   componentDidMount() {
     let token = localStorage.getItem('jwtToken');
-    fetch('http://10.30.32.255:8080/user/receipts', {
+    fetch('http://10.30.31.122:8080/user/receipts', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

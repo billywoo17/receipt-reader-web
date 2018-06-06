@@ -31,8 +31,7 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password,
     });
-    console.log('abody', aBody);
-    fetch('http://10.30.32.255:8080/user/login', {
+    fetch('http://10.30.31.122:8080/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
