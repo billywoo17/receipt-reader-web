@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import {Link} from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Redirect} from 'react-router-dom'
 
 
@@ -15,7 +15,7 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      password: "",
+      password: ""
     }
   }
 
@@ -35,23 +35,29 @@ class Login extends Component {
       password: this.state.password,
     });
     console.log('abody', aBody);
-    fetch('http://10.30.31.122:8080/users/login', {
+    fetch('http://10.30.32.255:8080/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: aBody,
     })
-    .then((response) => {
-      if(response.status === 200){
-      this.props.history.push('/users')
-      localStorage.setItem('jwtToken', response)
-      }else{
+    .then(response => {
+      if (response.status === 200) {
+        response.json()
+                .then(value => {
+                  localStorage.setItem('jwtToken', value.token)
+                  this.props.history.push('/users')
+                  let newToken = localStorage.getItem('jwtToken')
+                  console.log("token value", value.token)
+                  console.log("newtoken:", newToken)
+                })
+      } else {
         alert("Invalid Login");
       }
     })
     .catch((err) =>{
-      alert("Can't connect to the server")
+      alert("Can't connect to the server", err)
 
     })
   }
@@ -74,9 +80,9 @@ class Login extends Component {
           </div>
 
 
-          <input placeholder="Email" type="text" id="text-field-" onChange={this.email_input} className="email mdc-text-field__input"/>
+          <input placeholder="Email" type="text" onChange={this.email_input} className="email mdc-text-field__input"/>
 
-          <input placeholder="Password" type="password" id="text-field-" onChange={this.password_input} className="password mdc-text-field__input"/>
+          <input placeholder="Password" type="password" onChange={this.password_input} className="password mdc-text-field__input"/>
 
 
           <div className="loginButton">

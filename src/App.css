@@ -1005,9 +1005,6 @@ a.mdc-list-item {
   margin: 80px auto 0;
   order: 2; }
 
-.green {
-  color: green; }
-
 .title {
   position: fixed;
   top: 0;
@@ -1068,9 +1065,3 @@ a.mdc-list-item {
 
 .list-align {
   margin: 0 0 0 16px; }
-
-.orange {
-  color: orange; }
-
-.red {
-  color: red; }
