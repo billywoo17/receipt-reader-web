@@ -10,6 +10,8 @@ class App extends Component {
     super();
     this.state = {
       receipts: [],
+      userName: "",
+      projects: []
     }
   }
 
@@ -23,7 +25,10 @@ class App extends Component {
       }
     })
     .then(res => res.json())
-    .then(receipts => this.setState({ receipts }));
+    .then(receipts => {
+      this.setState({ receipts })
+      this.setState({userName: receipts[0].cat_name})
+      });
    }
 
 
@@ -40,7 +45,10 @@ render() {
       <div className ="flex-element">
         <div className= "title">
           <h1 className = "app-name"> <i className="fas fa-receipt"></i> Paperless</h1>
-          <h4 className = "user-info"> Hi, User </h4>
+          <div className = "right-title-bar">
+            <h4 className = "user-info"> Hello, {this.state.userName} </h4>
+            <button className="mdc-button mdc-button--raised logout-button">logout</button>
+          </div>
         </div>
         <nav className="drawer mdc-drawer mdc-drawer--permanent">
           <div className="mdc-drawer__toolbar-spacer">
@@ -72,7 +80,6 @@ class Receipt extends Component {
     super(props);
     this.state = {
       isModalOpen: false,
-      categories: []
     }
     this.toggleModal = this.toggleModal.bind(this);
   }
