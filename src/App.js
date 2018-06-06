@@ -3,17 +3,20 @@ import './App.css';
 // import {Link} from 'react-router-dom';
 import Moment from 'react-moment';
 import ReactModal from 'react-modal';
+  class App extends Component {
 
-class App extends Component {
-
-  constructor () {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       receipts: [],
       userName: "",
-      projects: []
+      projects: [],
+      selectedProject:"",
+      selectedReceipts:[],
     }
   }
+
+
 
   componentDidMount() {
     let token = localStorage.getItem('jwtToken');
@@ -28,6 +31,19 @@ class App extends Component {
     .then(receipts => {
       this.setState({ receipts })
       this.setState({userName: receipts[0].cat_name})
+      this.setState({projects: receipts.map(x => x.project_name)})
+
+      let projectObj = {}
+      let projectArr = []
+      this.state.projects.forEach(function(project){
+        projectObj[project] = project
+      })
+      for(let key in projectObj){
+        projectArr.push(key)
+      }
+      this.setState({projects: projectArr})
+      this.setState({selectedReceipts: this.state.receipts})
+
       });
    }
 
@@ -40,33 +56,55 @@ class App extends Component {
     return sum;
   }
 
+
+  logout(){
+    localStorage.removeItem("jwtToken")
+    window.history.back();   
+  }
+
+  selectedProject(project){
+    let selectedReceiptstArr = []
+    this.setState({selectedProject: project})
+    this.state.receipts.forEach(function(receipt){
+      if(receipt.project_name === project){
+        selectedReceiptstArr.push(receipt)
+      }      
+    })
+    this.setState({selectedReceipts: selectedReceiptstArr})
+    console.log(this.state.selectedReceipts)
+  }  
+
 render() {
+    // let project_list = this.state.receipts.map(receipt => receipt.project_name)
+    // console.log(project_list)
    return (
       <div className ="flex-element">
         <div className= "title">
           <h1 className = "app-name"> <i className="fas fa-receipt"></i> Paperless</h1>
           <div className = "right-title-bar">
             <h4 className = "user-info"> Hello, {this.state.userName} </h4>
-            <button className="mdc-button mdc-button--raised logout-button">logout</button>
+            <button className="mdc-button mdc-button--raised logout-button" onClick={this.logout}>logout</button>
           </div>
         </div>
         <nav className="drawer mdc-drawer mdc-drawer--permanent">
           <div className="mdc-drawer__toolbar-spacer">
             <h4> Projects </h4>
+
           </div>
           <div className="mdc-drawer__content">
             <nav className="mdc-list">
-              <a className="mdc-list-item"> All </a>
-              <a className="mdc-list-item"> Lighthouse </a>
-              <a className="mdc-list-item"> Buisness Trip </a>
+              <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All </a>
+              {this.state.projects.map((projects) => 
+                (<a className="mdc-list-item" onClick={() => this.selectedProject(projects)} value={projects}> {projects} </a>)
+              )}
             </nav>
           </div>
         </nav>
         <div className="App">
           <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list">
-          { this.state.receipts.map(receipt => <Receipt { ...receipt }/> )}
+          { this.state.selectedReceipts.map(receipt => <Receipt { ...receipt }/> )}
           </ul>
-          <div className="total">Total: ${parseFloat(this.total(this.state.receipts)/100).toFixed(2)}
+          <div className="total">Total: ${parseFloat(this.total(this.state.selectedReceipts)/100).toFixed(2)}
           </div>
         </div>
       </div>
@@ -88,6 +126,7 @@ class Receipt extends Component {
     this.setState({
       isModalOpen: !this.state.isModalOpen
     })
+
   }
 
   render() {
