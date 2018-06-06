@@ -15,6 +15,8 @@ class App extends Component {
     }
   }
 
+
+
   componentDidMount() {
     let token = localStorage.getItem('jwtToken');
     fetch('http://10.30.31.122:8080/user/receipts', {
@@ -28,6 +30,8 @@ class App extends Component {
     .then(receipts => {
       this.setState({ receipts })
       this.setState({userName: receipts[0].cat_name})
+      this.setState({projects: receipts.map(x => x.project_name)})
+      console.log(this.state.projects, "hohohoho")
       });
    }
 
@@ -41,6 +45,12 @@ class App extends Component {
   }
 
 render() {
+
+
+
+
+    // let project_list = this.state.receipts.map(receipt => receipt.project_name)
+    // console.log(project_list)
    return (
       <div className ="flex-element">
         <div className= "title">

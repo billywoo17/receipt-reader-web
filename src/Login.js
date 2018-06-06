@@ -19,12 +19,12 @@ class Login extends Component {
     }
   }
 
-   email_input(event) {
-      this.setState({email: event.target.value});
-    }
-   password_input(event) {
-      this.setState({password: event.target.value});
-    }
+  email_input(event) {
+    this.setState({email: event.target.value});
+  }
+  password_input(event) {
+    this.setState({password: event.target.value});
+  }
 
   submitForm() {
     const aBody = JSON.stringify({
@@ -70,7 +70,6 @@ class Login extends Component {
             <input placeholder="Password" type="password" onChange={this.password_input} className="password mdc-text-field__input"/>
             <div className="loginButton">
                <button type="button" className="btn btn-lg signInButton" onClick={this.submitForm}>Sign In</button>
-               <button type="button" className="btn btn-outline-light btn-lg" onClick={this.submitForm}>Sign In</button>
             </div>
          </div>
          <section className="slide-in-bottom">
