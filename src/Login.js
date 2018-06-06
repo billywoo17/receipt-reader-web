@@ -26,8 +26,6 @@ class Login extends Component {
       this.setState({password: event.target.value});
     }
 
-
-
   submitForm() {
     const aBody = JSON.stringify({
       email: this.state.email,
@@ -61,10 +59,6 @@ class Login extends Component {
 
 
   render() {
-
-
-
-
 
     return (
       <section className="hello">
