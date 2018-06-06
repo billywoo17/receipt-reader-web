@@ -13,14 +13,14 @@ import ReactModal from 'react-modal';
       projects: [],
       selectedProject:"",
       selectedReceipts:[],
-    }
+    };
   }
 
 
 
   componentDidMount() {
     let token = localStorage.getItem('jwtToken');
-    fetch('http://10.30.31.122:8080/user/receipts', {
+    fetch('http://10.30.32.255:8080/user/receipts', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ import ReactModal from 'react-modal';
 
   logout(){
     localStorage.removeItem("jwtToken")
-    window.history.back();   
+    window.history.back();
   }
 
   selectedProject(project){
@@ -68,11 +68,11 @@ import ReactModal from 'react-modal';
     this.state.receipts.forEach(function(receipt){
       if(receipt.project_name === project){
         selectedReceiptstArr.push(receipt)
-      }      
+      }
     })
     this.setState({selectedReceipts: selectedReceiptstArr})
     console.log(this.state.selectedReceipts)
-  }  
+  }
 
 render() {
     // let project_list = this.state.receipts.map(receipt => receipt.project_name)
@@ -94,7 +94,7 @@ render() {
           <div className="mdc-drawer__content">
             <nav className="mdc-list">
               <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All </a>
-              {this.state.projects.map((projects) => 
+              {this.state.projects.map((projects) =>
                 (<a className="mdc-list-item" onClick={() => this.selectedProject(projects)} value={projects}> {projects} </a>)
               )}
             </nav>
@@ -102,7 +102,7 @@ render() {
         </nav>
         <div className="App">
           <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list">
-          { this.state.selectedReceipts.map(receipt => <Receipt { ...receipt }/> )}
+          { this.state.selectedReceipts.reverse().map(receipt => <Receipt { ...receipt }/> )}
           </ul>
           <div className="total">Total: ${parseFloat(this.total(this.state.selectedReceipts)/100).toFixed(2)}
           </div>

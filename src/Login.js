@@ -31,7 +31,7 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password,
     });
-    fetch('http://10.30.31.122:8080/user/login', {
+    fetch('http://10.30.32.255:8080/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ class Login extends Component {
         response.json()
                 .then(value => {
                   localStorage.setItem('jwtToken', value.token)
-                  this.props.history.push('/users')
+                  this.props.history.push('/user')
                   let newToken = localStorage.getItem('jwtToken')
                 })
       } else {
