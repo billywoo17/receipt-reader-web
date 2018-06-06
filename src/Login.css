@@ -1389,13 +1389,6 @@ a.mdc-list-item {
   font-size: .8125rem;
   line-height: 32px; }
 
-body {
-  background-color: green; }
-
-.hello {
-  height: 100vh;
-  width: 100vw; }
-
 div.loginMain {
   position: absolute;
   top: 50%;

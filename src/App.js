@@ -15,7 +15,8 @@ class App extends Component {
 
   componentDidMount() {
    let token = localStorage.getItem('jwtToken')
-    console.log("token: ", token)
+   console.log(token)
+    console.log(token, "3")
     fetch('http://10.30.32.255:8080/users/receipts', {
       method: 'GET',
       headers: {
@@ -39,7 +40,7 @@ render() {
    return (
       <div className ="flex-element">
         <div className= "title">
-          <h1 className = "app-name"> <i class="fas fa-receipt"></i> Paperless</h1>
+          <h1 className = "app-name"> <i className="fas fa-receipt"></i> Paperless</h1>
           <h4 className = "user-info"> Hi, User </h4>
         </div>
         <nav className="drawer mdc-drawer mdc-drawer--permanent">

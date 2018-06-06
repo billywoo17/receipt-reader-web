@@ -19,13 +19,12 @@ class Login extends Component {
     }
   }
 
-   email_input(event) {
-      this.setState({email: event.target.value});
-      console.log(event.target.value)
-    }
-   password_input(event) {
-      this.setState({password: event.target.value});
-    }
+  email_input(event) {
+    this.setState({email: event.target.value});
+  }
+  password_input(event) {
+    this.setState({password: event.target.value});
+  }
 
 
 
@@ -35,7 +34,7 @@ class Login extends Component {
       password: this.state.password,
     });
     console.log('abody', aBody);
-    fetch('http://10.30.31.122:8080/users/login', {
+    fetch('http://10.30.32.255:8080/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,12 +43,14 @@ class Login extends Component {
     })
     .then((response) => {
       if(response.status === 200){
-      this.props.history.push('/users')
-      localStorage.setItem('jwtToken', response)
-      }else{
-        alert("Invalid Login");
-      }
-    })
+        response.json()
+         .then(value => {
+            console.log(response)
+            localStorage.setItem('jwtToken', response)
+            this.props.history.push('/users')
+            }
+          )
+    }})
     .catch((err) =>{
       alert("Can't connect to the server")
 
@@ -81,14 +82,12 @@ class Login extends Component {
 
           <div className="loginButton">
             <button type="button" className="btn btn-lg signInButton" onClick={this.submitForm}>Sign In</button>
-
-            <button type="button" className="btn btn-outline-light btn-lg" onClick={this.submitForm}>Sign In</button>
           </div>
 
         </div>
-          <section className="slide-in-bottom">
+        <section className="slide-in-bottom">
 
-          </section>
+        </section>
 
     </section>
     )
