@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Login.css';
 import {Link} from 'react-router-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter, Route, Redirect} from 'react-router-dom'
+import {BrowserRouter, Route, Redirect, Router} from 'react-router-dom'
 
 
 
@@ -42,9 +42,9 @@ class Login extends Component {
       if (response.status === 200) {
         response.json()
                 .then(value => {
-                  localStorage.setItem('jwtToken', value.token)
-                  this.props.history.push('/users')
+                  localStorage.setItem('jwtToken', value.token)              
                   let newToken = localStorage.getItem('jwtToken')
+                  this.props.history.push('/users')                 
                 })
       } else {
         alert("Invalid Login");
