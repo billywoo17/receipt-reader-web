@@ -1392,31 +1392,32 @@ a.mdc-list-item {
 .hello {
   height: 100vh;
   width: 100vw; }
-  .hello div.loginMain {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: Tan;
-    border-radius: 5px;
+
+div.loginMain {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: Tan;
+  border-radius: 5px;
+  padding: 1em;
+  background-color: Tan;
+  width: 20%;
+  height: 300px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+  div.loginMain .loginHeader {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
     padding: 1em;
-    background-color: Tan;
-    width: 20%;
-    height: 300px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
-    .hello div.loginMain .loginHeader {
-      font-family: 'Open Sans', sans-serif;
-      color: white;
-      padding: 1em;
-      font-size: 1.5em;
-      position: center; }
-      .hello div.loginMain .loginHeader .fa-receipt {
-        padding-right: 0.5em; }
-    .hello div.loginMain .loginButton {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      color: white; }
+    font-size: 1.5em;
+    position: center; }
+    div.loginMain .loginHeader .fa-receipt {
+      padding-right: 0.5em; }
+  div.loginMain .loginButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white; }
 
 .mdc-text-field__input {
   color: white;
