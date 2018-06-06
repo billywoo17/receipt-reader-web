@@ -21,7 +21,6 @@ class Login extends Component {
 
    email_input(event) {
       this.setState({email: event.target.value});
-      console.log(event.target.value)
     }
    password_input(event) {
       this.setState({password: event.target.value});
@@ -49,8 +48,6 @@ class Login extends Component {
                   localStorage.setItem('jwtToken', value.token)
                   this.props.history.push('/users')
                   let newToken = localStorage.getItem('jwtToken')
-                  console.log("token value", value.token)
-                  console.log("newtoken:", newToken)
                 })
       } else {
         alert("Invalid Login");
@@ -71,32 +68,21 @@ class Login extends Component {
 
     return (
       <section className="hello">
-        <div className="loginMain">
-
-
-          <div className="loginHeader">
-            <i className="fas fa-receipt"></i>
-            Paperless
-          </div>
-
-
-          <input placeholder="Email" type="text" onChange={this.email_input} className="email mdc-text-field__input"/>
-
-          <input placeholder="Password" type="password" onChange={this.password_input} className="password mdc-text-field__input"/>
-
-
-          <div className="loginButton">
-            <button type="button" className="btn btn-lg signInButton" onClick={this.submitForm}>Sign In</button>
-
-            <button type="button" className="btn btn-outline-light btn-lg" onClick={this.submitForm}>Sign In</button>
-          </div>
-
-        </div>
-          <section className="slide-in-bottom">
-
-          </section>
-
-    </section>
+         <div className="loginMain">
+            <div className="loginHeader">
+               <i className="fas fa-receipt"></i>
+               Paperless
+            </div>
+            <input placeholder="Email" type="text" onChange={this.email_input} className="email mdc-text-field__input"/>
+            <input placeholder="Password" type="password" onChange={this.password_input} className="password mdc-text-field__input"/>
+            <div className="loginButton">
+               <button type="button" className="btn btn-lg signInButton" onClick={this.submitForm}>Sign In</button>
+               <button type="button" className="btn btn-outline-light btn-lg" onClick={this.submitForm}>Sign In</button>
+            </div>
+         </div>
+         <section className="slide-in-bottom">
+         </section>
+      </section>
     )
   }
 }
