@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import ReactModal from 'react-modal';
 import Receipt from './Receipt.js';
 import UserScreen from './screens/UserScreen';
-
+require('dotenv').config()
 class App extends Component {
 
   constructor(props) {
@@ -42,8 +42,8 @@ class App extends Component {
     console.log("PROPS:", this.props);
 
     let route = "";
-    (this.props.extra) ? (route = "http://10.30.31.122:8080/users/receipts")
-    : (route = "http://10.30.31.122:8080/user/receipts");
+    (this.props.extra) ? (route = "/users/receipts")
+    : (route = "/user/receipts");
 
     console.log("receipt route: ", route);
 

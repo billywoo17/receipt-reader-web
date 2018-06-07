@@ -3,7 +3,7 @@ import './Login.css';
 import {Link} from 'react-router-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Redirect, Router} from 'react-router-dom';
-
+const dotenv = require('dotenv')
 
 
 class Login extends Component {
@@ -31,7 +31,7 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password,
     });
-    fetch('http://10.30.31.122:8080/user/login', {
+    fetch('/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
