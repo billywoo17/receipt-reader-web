@@ -19,7 +19,12 @@ class MainContainer extends Component {
  userCb(userData){
     console.log("use me", userData.user_id);
 
-   this.setState({admin:userData.adminStatus, user_id: userData.user_id});
+   this.setState({
+     admin:userData.adminStatus, 
+     user_id: userData.user_id,
+     first_name: userData.first_name,
+     last_name: userData.last_name
+    });
 
  }
    render() {
@@ -31,7 +36,8 @@ class MainContainer extends Component {
          render={(props) => <Login {...props} extra={this.userCb} />} />
          <Route
          exact path='/user'
-         render={(props) => <App {...props} extra={this.state.admin} user_id={this.state.user_id} />} />
+         render={(props) => <App {...props} extra={this.state.admin} user_id={this.state.user_id}  
+         first_name={this.state.first_name} last_name={this.state.last_name}  />} />
        </div>
        </BrowserRouter>)
    }
