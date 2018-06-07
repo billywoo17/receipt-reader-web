@@ -20,18 +20,30 @@ class App extends Component {
     };
   }
 
+  // getUser(user_id) {
+  //   const route = "http://10.30.31.122:8080/user/" + this.props.user_id;
+  //   console.log(route);
+  //   fetch(route, {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         // 'Authorization': `Bearer ${token}`
+  //       }
+  //     })
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       console.log(res);
+  //     })
+  // }
+
   componentDidMount() {
     let token = localStorage.getItem('jwtToken');
 
-    // this.props.extra ? (this.setState({receiptRoute: 'http://10.30.31.122:8080/users/receipts'}))
-    // : (this.setState({receiptRoute: 'http://10.30.31.122:8080/user/receipts'}));
-    console.log(this.props.extra);
+    console.log("PROPS:", this.props);
 
     let route = "";
     (this.props.extra) ? (route = "http://10.30.31.122:8080/users/receipts")
     : (route = "http://10.30.31.122:8080/user/receipts");
-
-
 
     console.log("receipt route: ", route);
 
@@ -104,7 +116,7 @@ class App extends Component {
         <div className= "title">
           <h1 className = "app-name"> <i className="fas fa-receipt"></i> Paperless</h1>
           <div className = "right-title-bar">
-            <h4 className = "user-info"> Hello, {this.state.userName} </h4>
+            <h4 className = "user-info"> Hello, {this.props.first_name} {this.props.last_name} </h4>
             <button className="mdc-button mdc-button--raised logout-button" onClick={this.logout}>logout</button>
           </div>
         </div>
