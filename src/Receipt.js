@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-// import {Link} from 'react-router-dom';
+import App from './App';
+import Login from './Login';
 import Moment from 'react-moment';
 import ReactModal from 'react-modal';
 class Receipt extends Component {

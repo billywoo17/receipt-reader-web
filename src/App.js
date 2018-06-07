@@ -15,7 +15,7 @@ import Receipt from './Receipt.js';
       projects: [],
       selectedProject:"",
       selectedReceipts:[],
-      admin:"",
+      admin:false,
     }
   }
 
@@ -54,7 +54,7 @@ import Receipt from './Receipt.js';
         this.setState({
           selectedReceipts: this.state.receipts
         })
-        
+        this.setState({admin:this.props.extra})
       });
   }
   total(receiptsArr) {
