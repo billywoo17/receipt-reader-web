@@ -4,6 +4,7 @@ import './App.css';
 import Moment from 'react-moment';
 import ReactModal from 'react-modal';
 import Receipt from './Receipt.js';
+import UserScreen from './screens/UserScreen';
 
 class App extends Component {
 
@@ -22,7 +23,19 @@ class App extends Component {
   componentDidMount() {
     let token = localStorage.getItem('jwtToken');
 
-    fetch('http://10.30.31.122:8080/user/receipts', {
+    // this.props.extra ? (this.setState({receiptRoute: 'http://10.30.31.122:8080/users/receipts'}))
+    // : (this.setState({receiptRoute: 'http://10.30.31.122:8080/user/receipts'}));
+    console.log(this.props.extra);
+
+    let route = "";
+    (this.props.extra) ? (route = "http://10.30.31.122:8080/users/receipts")
+    : (route = "http://10.30.31.122:8080/user/receipts");
+
+
+
+    console.log("receipt route: ", route);
+
+    fetch(route, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -81,9 +94,6 @@ class App extends Component {
     console.log(this.state.selectedReceipts);
   }
 
-  checkingAdmin(adminStatus){
-    this.setState({admin: adminStatus});
-  }
 
   render() {
     return (
@@ -109,13 +119,9 @@ class App extends Component {
             </nav>
           </div>
         </nav>
-        <div className="screen">
-          <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list">
-            { this.state.selectedReceipts.map(receipt => <Receipt { ...receipt }/> )}
-          </ul>
-          <div className="total">Total: ${parseFloat(this.total(this.state.selectedReceipts)/100).toFixed(2)}
-          </div>
-        </div>
+
+        <UserScreen selectedReceipts={this.state.selectedReceipts}/>
+
       </div>
     );
   }
