@@ -10,13 +10,17 @@ class MainContainer extends Component {
  constructor(props) {
    super(props);
    this.state = {
-     admin:""
+     admin: "",
+     user_id: ""
    };
-   this.isAdmin = this.isAdmin.bind(this);
+   this.userCb = this.userCb.bind(this);
  }
 
- isAdmin(adminStatus){
-   this.setState({admin:adminStatus});
+ userCb(userData){
+    console.log("use me", userData.user_id);
+
+   this.setState({admin:userData.adminStatus, user_id: userData.user_id});
+
  }
    render() {
      return (
@@ -24,10 +28,10 @@ class MainContainer extends Component {
        <div>
          <Route
          exact path='/'
-         render={(props) => <Login {...props} extra={this.isAdmin} />} />
+         render={(props) => <Login {...props} extra={this.userCb} />} />
          <Route
          exact path='/user'
-         render={(props) => <App {...props} extra={this.state.admin} />} />
+         render={(props) => <App {...props} extra={this.state.admin} user_id={this.state.user_id} />} />
        </div>
        </BrowserRouter>)
    }
