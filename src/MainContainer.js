@@ -20,7 +20,7 @@ class MainContainer extends Component {
     console.log("use me", userData.user_id);
 
    this.setState({
-     admin:userData.adminStatus, 
+     admin:userData.admin, 
      user_id: userData.user_id,
      first_name: userData.first_name,
      last_name: userData.last_name
