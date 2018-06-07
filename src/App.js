@@ -66,7 +66,10 @@ class App extends Component {
           selectedReceipts: this.state.receipts,
           admin:this.props.extra
         });
-      });
+      })
+      .catch((error) =>{
+        console.log(error)
+      })
   }
 
   total(receiptsArr) {
