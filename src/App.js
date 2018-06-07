@@ -20,18 +20,30 @@ class App extends Component {
     };
   }
 
+  // getUser(user_id) {
+  //   const route = "http://10.30.31.122:8080/user/" + this.props.user_id;
+  //   console.log(route);
+  //   fetch(route, {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         // 'Authorization': `Bearer ${token}`
+  //       }
+  //     })
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       console.log(res);
+  //     })
+  // }
+
   componentDidMount() {
     let token = localStorage.getItem('jwtToken');
 
-    // this.props.extra ? (this.setState({receiptRoute: 'http://10.30.31.122:8080/users/receipts'}))
-    // : (this.setState({receiptRoute: 'http://10.30.31.122:8080/user/receipts'}));
-    console.log(this.props.extra);
+    console.log("PROPS:", this.props);
 
     let route = "";
     (this.props.extra) ? (route = "http://10.30.31.122:8080/users/receipts")
     : (route = "http://10.30.31.122:8080/user/receipts");
-
-
 
     console.log("receipt route: ", route);
 
@@ -66,6 +78,8 @@ class App extends Component {
           selectedReceipts: this.state.receipts,
           admin:this.props.extra
         });
+
+
       });
   }
 
