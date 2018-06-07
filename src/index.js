@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Maincontainer from './Maincontainer';
+import MainContainer from './MainContainer';
 
 
 
 ReactDOM.render(
-<Maincontainer/>
+<MainContainer/>
    , document.getElementById('root'));
 
