@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import ReactModal from 'react-modal';
 import Receipt from './Receipt.js';
 
-  class App extends Component {
+class App extends Component {
 
   constructor(props) {
     super(props);
@@ -16,11 +16,12 @@ import Receipt from './Receipt.js';
       selectedProject:"",
       selectedReceipts:[],
       admin:false,
-    }
+    };
   }
 
   componentDidMount() {
     let token = localStorage.getItem('jwtToken');
+
     fetch('http://10.30.31.122:8080/user/receipts', {
         method: 'GET',
         headers: {
@@ -31,62 +32,61 @@ import Receipt from './Receipt.js';
       .then(res => res.json())
       .then(receipts => {
         this.setState({
-          receipts
-        })
-        this.setState({
-          userName: receipts[0].cat_name
-        })
-        this.setState({
+          receipts,
+          userName: receipts[0].last_name,
           projects: receipts.map(x => x.project_name)
-        })
+        });
 
-        let projectObj = {}
-        let projectArr = []
+        let projectObj = {};
+        let projectArr = [];
+
         this.state.projects.forEach(function (project) {
-          projectObj[project] = project
-        })
+          projectObj[project] = project;
+        });
+
         for (let key in projectObj) {
-          projectArr.push(key)
+          projectArr.push(key);
         }
+
         this.setState({
-          projects: projectArr
-        })
-        this.setState({
-          selectedReceipts: this.state.receipts
-        })
-        this.setState({admin:this.props.extra})
+          projects: projectArr,
+          selectedReceipts: this.state.receipts,
+          admin:this.props.extra
+        });
       });
   }
+
   total(receiptsArr) {
     var sum = 0;
     receiptsArr.forEach(function (value) {
-      sum += value.total
-    })
+      sum += value.total;
+    });
     return sum;
   }
+
   logout() {
-    localStorage.removeItem("jwtToken")
+    localStorage.removeItem("jwtToken");
     window.history.back();
   }
 
   selectedProject(project){
-    let selectedReceiptstArr = []
-    this.setState({selectedProject: project})
+    let selectedReceiptstArr = [];
+    this.setState({selectedProject: project});
     this.state.receipts.forEach(function(receipt){
       if(receipt.project_name === project){
-        selectedReceiptstArr.push(receipt)
-      }      
-    })
-    this.setState({selectedReceipts: selectedReceiptstArr})
-    console.log(this.state.selectedReceipts)
+        selectedReceiptstArr.push(receipt);
+      }
+    });
+    this.setState({selectedReceipts: selectedReceiptstArr});
+    console.log(this.state.selectedReceipts);
   }
 
   checkingAdmin(adminStatus){
-    this.setState({admin: adminStatus})
+    this.setState({admin: adminStatus});
   }
 
-render() {
-   return (
+  render() {
+    return (
       <div className ="flex-element">
         <div className= "title">
           <h1 className = "app-name"> <i className="fas fa-receipt"></i> Paperless</h1>
@@ -96,22 +96,22 @@ render() {
           </div>
         </div>
         <nav className="drawer mdc-drawer mdc-drawer--permanent">
-        <div className="mdc-drawer__toolbar-spacer">
-          <h4> Projects </h4>
-  
-        </div>
-        <div className="mdc-drawer__content">
-          <nav className="mdc-list">
-            <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All </a>
-            {this.state.projects.map((projects) => 
-              (<a className="mdc-list-item" onClick={() => this.selectedProject(projects)} value={projects}> {projects} </a>)
-            )}
-          </nav>
-        </div>
-      </nav>    
-        <div className="App">
+          <div className="mdc-drawer__toolbar-spacer">
+            <h4> Projects </h4>
+
+          </div>
+          <div className="mdc-drawer__content">
+            <nav className="mdc-list">
+              <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All </a>
+              {this.state.projects.map((projects) =>
+                (<a className="mdc-list-item" onClick={() => this.selectedProject(projects)} value={projects}> {projects} </a>)
+              )}
+            </nav>
+          </div>
+        </nav>
+        <div className="screen">
           <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list">
-          { this.state.selectedReceipts.map(receipt => <Receipt { ...receipt }/> )}
+            { this.state.selectedReceipts.map(receipt => <Receipt { ...receipt }/> )}
           </ul>
           <div className="total">Total: ${parseFloat(this.total(this.state.selectedReceipts)/100).toFixed(2)}
           </div>

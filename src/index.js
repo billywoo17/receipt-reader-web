@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Maincontainer from './Maincontainer';
-import Moment from 'react-moment';
-import ReactModal from 'react-modal';
+import MainContainer from './MainContainer';
+
 
 ReactDOM.render(
-<Maincontainer/>
+<MainContainer/>
    , document.getElementById('root'));
 

@@ -1000,7 +1000,7 @@ a.mdc-list-item {
   .mdc-ripple-surface--accent.mdc-ripple-upgraded {
     --mdc-ripple-fg-opacity: 0.16; }
 
-.App {
+.screen {
   width: 50%;
   margin: 80px auto 0;
   order: 2; }

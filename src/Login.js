@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import './Login.css';
 import {Link} from 'react-router-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter, Route, Redirect, Router} from 'react-router-dom'
+import {BrowserRouter, Route, Redirect, Router} from 'react-router-dom';
 
 
 
 class Login extends Component {
   constructor(props){
-    super(props)
+    super(props);
     this.submitForm = this.submitForm.bind(this);
     this.email_input = this.email_input.bind(this);
     this.password_input = this.password_input.bind(this);
@@ -16,7 +16,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: ""
-    }
+    };
   }
 
   email_input(event) {
@@ -42,19 +42,20 @@ class Login extends Component {
       if (response.status === 200) {
         response.json()
                 .then(value => {
-                  localStorage.setItem('jwtToken', value.token)              
-                  let newToken = localStorage.getItem('jwtToken')
+
+                  localStorage.setItem('jwtToken', value.token);
+                  let newToken = localStorage.getItem('jwtToken');
                   this.props.extra(value.admin)
-                  this.props.history.push('/users')                 
-                })
+                  this.props.history.push('/users');
+                });
       } else {
         alert("Invalid Login");
       }
     })
     .catch((err) =>{
-      alert("Can't connect to the server", err)
+      alert("Can't connect to the server", err);
 
-    })
+    });
   }
 
 
