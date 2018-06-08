@@ -64,7 +64,7 @@ class Receipt extends Component {
             <button className="mdc-button mdc-button--raised list-align" onClick={this.toggleModal}>Close</button>
           </div>
           <div className="modal-pic">
-            <img src={image_url} alt="demo"/>
+            <img src={image_url} alt="demo" className="receipt-pic"/>
           </div>
         </ReactModal>
       </li>
