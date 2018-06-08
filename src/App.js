@@ -16,7 +16,7 @@ class App extends Component {
       projects: [],
       selectedProject:"",
       selectedReceipts:[],
-      admin:false,
+      isAdmin: false,
     };
   }
 
@@ -41,9 +41,8 @@ class App extends Component {
 
     console.log("PROPS:", this.props);
 
-    let route = "";
-    (this.props.extra) ? (route = "/users/receipts")
-    : (route = "/user/receipts");
+    let query = this.props.extra ? "users" : "user"
+    let route = `/${query}/receipts`
 
     console.log("receipt route: ", route);
 
@@ -55,11 +54,14 @@ class App extends Component {
         }
       })
       .then(res => res.json())
-      .then(receipts => {
+      .then(results => {
+        debugger;
+        console.log("my results",results)
+        let receipts = results.receipts
         this.setState({
-          receipts,
-          userName: receipts[0].last_name,
-          projects: receipts.map(x => x.project_name)
+          receipts: results.receipts,
+          isAdmin: results.isAdmin,
+          projects: results.receipts.map(x => x.project_name)
         });
 
         let projectObj = {};
@@ -101,7 +103,7 @@ class App extends Component {
     let selectedReceiptstArr = [];
     this.setState({selectedProject: project});
     this.state.receipts.forEach(function(receipt){
-      if(receipt.project_name === project){
+      if (receipt.project_name === project){
         selectedReceiptstArr.push(receipt);
       }
     });
