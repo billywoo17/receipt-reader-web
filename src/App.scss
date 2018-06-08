@@ -3,6 +3,7 @@
 @import "@material/button/mdc-button";
 @import "@material/ripple/mdc-ripple";
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 .screen {
   width: 50%;
@@ -26,6 +27,7 @@
 .app-name {
   float:left;
   font-weight: bold;
+  font-family: 'Nunito', sans-serif;
 }
 
 .user-info {

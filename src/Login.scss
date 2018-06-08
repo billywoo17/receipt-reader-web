@@ -1,14 +1,12 @@
 @import "@material/list/mdc-list";
 @import "@material/textfield/mdc-text-field";
 @import "@material/button/mdc-button";
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
-$loginPrimColor: Tan;
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 .hello {
-  height: 100vh;
-  width: 100vw;
-
+  background-color: black;
+  color: black;
 }
 
 
@@ -17,17 +15,18 @@ div.loginMain {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: $loginPrimColor;
+  background: white;
   border-radius: 5px;
   padding: 1em;
-  background-color: $loginPrimColor;
+  background-color: white;
   width: 20%;
   height: 300px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
   .loginHeader {
-    font-family: 'Open Sans', sans-serif;
-    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    color: black;
     padding: 1em;
     font-size: 1.5em;
     position: center;
@@ -39,6 +38,7 @@ div.loginMain {
 
 
   .loginButton {
+    margin: 30px 0 0 0 ;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -49,21 +49,17 @@ div.loginMain {
 
 
 .mdc-text-field__input {
-  color: white;
+  color: black;
   padding: 1em;
 }
 .signInButton {
-  background-color: SandyBrown;
+  background-color: #0ba5a8;
   color: white;
+  font-family: 'Nunito Sans', sans-serif;
 }
 .signInButton:hover {
-  background-color: wheat;
-  color: burlywood;
-}
-
-.loginMain:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-
+  background-color: white;
+  color: #0ba5a8;
 }
 
 /*.slide-in-bottom {

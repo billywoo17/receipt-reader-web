@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito+Sans");
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 @keyframes mdc-ripple-fg-radius-in {
   from {
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1019,7 +1020,8 @@ a.mdc-list-item {
 
 .app-name {
   float: left;
-  font-weight: bold; }
+  font-weight: bold;
+  font-family: 'Nunito', sans-serif; }
 
 .user-info {
   margin: 29px 0;

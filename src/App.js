@@ -128,7 +128,7 @@ class App extends Component {
           <div className="mdc-drawer__content">
             <nav className="mdc-list">
               <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All </a>
-              {this.state.projects.map((projects) =>
+              {this.state.projects.reverse().map.((projects) =>
                 (<a className="mdc-list-item" onClick={() => this.selectedProject(projects)} value={projects}> {projects} </a>)
               )}
             </nav>
