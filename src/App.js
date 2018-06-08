@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       receipts: [],
-      userName: "",
+      username: localStorage.getItem('name'),
       projects: [],
       selectedProject:"",
       selectedReceipts:[],
@@ -36,15 +36,11 @@ class App extends Component {
   //     })
   // }
 
-  componentDidMount() {
+  componentWillMount() {
+
     let token = localStorage.getItem('jwtToken');
-
-    console.log("PROPS:", this.props);
-
-    let query = this.props.extra ? "users" : "user"
+    let query = localStorage.getItem('isAdmin') ? "users" : "user"
     let route = `/${query}/receipts`
-
-    console.log("receipt route: ", route);
 
     fetch(route, {
         method: 'GET',
@@ -55,8 +51,6 @@ class App extends Component {
       })
       .then(res => res.json())
       .then(results => {
-        debugger;
-        console.log("my results",results)
         let receipts = results.receipts
         this.setState({
           receipts: results.receipts,
@@ -96,6 +90,8 @@ class App extends Component {
 
   logout() {
     localStorage.removeItem("jwtToken");
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("name");
     window.history.back();
   }
 
@@ -108,8 +104,7 @@ class App extends Component {
       }
     });
     this.setState({selectedReceipts: selectedReceiptstArr});
-    console.log(this.state.selectedReceipts);
-  }
+    }
 
 
   render() {
@@ -118,7 +113,7 @@ class App extends Component {
         <div className= "title">
           <h1 className = "app-name"> <i className="fas fa-receipt"></i> Paperless</h1>
           <div className = "right-title-bar">
-            <h4 className = "user-info"> Hello, {this.props.first_name} {this.props.last_name} </h4>
+            <h4 className = "user-info"> Hello, {this.state.username}</h4>
             <button className="mdc-button mdc-button--raised logout-button" onClick={this.logout}>logout</button>
           </div>
         </div>
@@ -130,14 +125,14 @@ class App extends Component {
           <div className="mdc-drawer__content">
             <nav className="mdc-list">
               <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All </a>
-              {this.state.projects.reverse().map.((projects) =>
+              {this.state.projects.sort().map((projects) =>
                 (<a className="mdc-list-item" onClick={() => this.selectedProject(projects)} value={projects}> {projects} </a>)
               )}
             </nav>
           </div>
         </nav>
 
-        <UserScreen selectedReceipts={this.state.selectedReceipts}/>
+        <UserScreen selectedReceipts={this.state.selectedReceipts} isAdmin={this.state.isAdmin}/>
 
       </div>
     );

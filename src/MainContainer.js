@@ -17,8 +17,6 @@ class MainContainer extends Component {
  }
 
  userCb(userData){
-    console.log("use me", userData.user_id);
-
    this.setState({
      admin:userData.admin, 
      user_id: userData.user_id,
@@ -28,6 +26,7 @@ class MainContainer extends Component {
 
  }
    render() {
+
      return (
        <BrowserRouter>
        <div>

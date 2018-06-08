@@ -21,7 +21,6 @@ class Receipt extends Component {
     this.setState({
       isModalOpen: !this.state.isModalOpen
     })
-    console.log(this.state)
   }
 
   _updateServer(receipt_id, status_id) {
@@ -43,19 +42,16 @@ class Receipt extends Component {
 
 
   _approved(){
-    console.log("************my receipt id************",this.props.id)
     this.setState({status : 2})
     this._updateServer(this.props.id, 2)
   }
 
   _denied(){
-    console.log("**********my receipt id*************",this.props.id)
     this.setState({status : 3})
     this._updateServer(this.props.id, 3)
   }
 
   render() {
-    console.log(this.props)
 
     function statusCheck (status) {
       if (status === 1) {
@@ -73,7 +69,6 @@ class Receipt extends Component {
     }
 
     const { id, date, location, description, total, image_url, status_id} = this.props;
-
     return (
       <li className="mdc-list-item mdc-ripple-surface" key = {id} onClick={ this.toggleModal }>
         {statusCheck(this.state.status)}
@@ -98,12 +93,12 @@ class Receipt extends Component {
               <li className="mdc-list-item">Location: {location}</li>
               <li className="mdc-list-item">Description: {description}</li>
               <li className="mdc-list-item">Amount: ${parseFloat(total/100).toFixed(2)}</li>
-              <li className="mdc-list-item">Status: {statusWord[status_id]}</li>
+              <li className="mdc-list-item">Status: {statusWord[this.state.status]}</li>
+              {this.props.isAdmin ? 
               <li className="mdc-list-item">
-              
               <i className="fas fa-check-circle  text-success" onClick={this._approved}></i>
               <i className="fas fa-exclamation-triangle  text-danger" onClick={this._denied}></i>
-              </li>
+              </li>: <li/>}
             </ul>
             <button className="mdc-button mdc-button--raised list-align" onClick={this.toggleModal}>Close</button>
           </div>

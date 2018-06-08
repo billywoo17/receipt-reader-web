@@ -15,7 +15,7 @@ class UserScreen extends Component {
     return (
       <div className="screen">
         <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list">
-          { this.props.selectedReceipts.map(receipt => <Receipt { ...receipt }/> )}
+          { this.props.selectedReceipts.map(receipt => <Receipt { ...receipt } isAdmin={this.props.isAdmin}/> )}
         </ul>
 
         <div className="total">
