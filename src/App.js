@@ -104,6 +104,8 @@ class App extends Component {
       }
     });
     this.setState({selectedReceipts: selectedReceiptstArr});
+    console.log(document.getElementById(project));
+    document.getElementById(project).style.color = 'green';
     }
 
 
@@ -126,7 +128,7 @@ class App extends Component {
             <nav className="mdc-list">
               <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All </a>
               {this.state.projects.sort().map((projects) =>
-                (<a className="mdc-list-item" onClick={() => this.selectedProject(projects)} value={projects}> {projects} </a>)
+                (<a id={projects} className="mdc-list-item" onClick={() => this.selectedProject(projects)} value={projects} > {projects} </a>)
               )}
             </nav>
           </div>
