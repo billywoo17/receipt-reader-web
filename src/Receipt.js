@@ -36,8 +36,6 @@ class Receipt extends Component {
     }).catch((err) => {
       alert("can't update status", err);
     });
-
-
   }
 
 

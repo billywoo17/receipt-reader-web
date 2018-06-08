@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import Receipt from '../Receipt.js';
-
+import Graph from '../component/Graph.js';
 class UserScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showGraph: false,
+    };
+    this._graphToggle = this._graphToggle.bind(this);
+
+  }
 
   total(receiptsArr) {
     var sum = 0;
@@ -10,10 +18,16 @@ class UserScreen extends Component {
     });
     return sum;
   }
-
+  _graphToggle(){
+    this.setState({showGraph: !this.state.showGraph})
+  }
   render() {
     return (
-      <div className="screen">
+
+      <div className="screen">{this.props.isAdmin ?
+      <div onClick={this._graphToggle}>Graph
+      {this.state.showGraph ? <Graph/>: <a/>}
+      </div>: <a/> }
         <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list">
           { this.props.selectedReceipts.map(receipt => <Receipt { ...receipt } isAdmin={this.props.isAdmin}/> )}
         </ul>
@@ -28,12 +42,3 @@ class UserScreen extends Component {
 }
 
 export default UserScreen;
-
-
-
-
-
-//     return
-
-
-
