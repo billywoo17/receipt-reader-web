@@ -47,7 +47,7 @@ class Login extends Component {
                   let newToken = localStorage.getItem('jwtToken');
                   console.log(value);
                   this.props.extra({
-                    admin: value.admin, 
+                    admin: value.admin,
                     user_id: value.id,
                     first_name: value.first_name,
                     last_name: value.last_name
@@ -68,7 +68,7 @@ class Login extends Component {
   render() {
 
     return (
-      <section className="hello">
+      <div className="hello">
          <div className="loginMain">
             <div className="loginHeader">
                <i className="fas fa-receipt"></i>
@@ -80,9 +80,7 @@ class Login extends Component {
                <button type="button" className="btn btn-lg signInButton" onClick={this.submitForm}>Sign In</button>
             </div>
          </div>
-         <section className="slide-in-bottom">
-         </section>
-      </section>
+      </div>
     )
   }
 }
