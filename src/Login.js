@@ -42,7 +42,6 @@ class Login extends Component {
       if (response.status === 200) {
         response.json()
                 .then(value => {
-
                   localStorage.setItem('jwtToken', value.token);
                   let newToken = localStorage.getItem('jwtToken');
                   localStorage.setItem('isAdmin', value.admin);

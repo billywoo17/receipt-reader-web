@@ -5,6 +5,7 @@ import Moment from 'react-moment';
 import ReactModal from 'react-modal';
 import Receipt from './Receipt.js';
 import UserScreen from './screens/UserScreen';
+import CreateProject from './component/CreateProject';
 require('dotenv').config()
 class App extends Component {
 
@@ -17,7 +18,9 @@ class App extends Component {
       selectedProject:"",
       selectedReceipts:[],
       isAdmin: false,
+      showProject: false,
     };
+    this._toggleCreateProject = this._toggleCreateProject.bind(this);
   }
 
   // getUser(user_id) {
@@ -106,7 +109,9 @@ class App extends Component {
     this.setState({selectedReceipts: selectedReceiptstArr});
     }
 
-
+  _toggleCreateProject(){
+    this.setState({showProject: !this.state.showProject})
+  }
   render() {
     return (
       <div className ="flex-element">
@@ -118,13 +123,13 @@ class App extends Component {
           </div>
         </div>
         <nav className="drawer mdc-drawer mdc-drawer--permanent">
-          <div className="mdc-drawer__toolbar-spacer">
-            <h4> Projects </h4>
-
-          </div>
+          <div className="mdc-drawer__toolbar-spacer" onClick={this._toggleCreateProject}>
+            <h4>{this.state.admin ? 'Create Projects' : 'Projects'} </h4>
+          </div>{this.state.isAdmin ? 
+          (this.state.showProject ? <CreateProject _toggleCreateProject = {this._toggleCreateProject}/>: <a/>): <a/>}
           <div className="mdc-drawer__content">
             <nav className="mdc-list">
-              <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All </a>
+              <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All Projects </a>
               {this.state.projects.sort().map((projects) =>
                 (<a className="mdc-list-item" onClick={() => this.selectedProject(projects)} value={projects}> {projects} </a>)
               )}
