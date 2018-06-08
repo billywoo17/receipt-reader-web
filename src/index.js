@@ -5,6 +5,7 @@ import MainContainer from './MainContainer';
 
 
 ReactDOM.render(
-<MainContainer/>
-   , document.getElementById('root'));
+  <MainContainer/>
+   , document.getElementById('root')
+  );
 

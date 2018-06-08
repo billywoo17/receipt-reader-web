@@ -57,7 +57,7 @@
 }
 
 .modal {
-  margin: 200px;
+  margin: 15vh 25vw 15vh 25vw;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
@@ -69,8 +69,14 @@
 
 .modal-pic {
   order: 1;
-  height: 120px;
+  height: 100%;
   width: auto;
+  overflow-y: auto;
+}
+
+.receipt-pic {
+  max-width: 400px;
+  height: auto;
 }
 
 .close-button {
