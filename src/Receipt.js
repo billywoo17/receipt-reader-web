@@ -25,9 +25,9 @@ class Receipt extends Component {
 
     function statusCheck (status) {
       if (status === 1) {
-        return <i className="fas fa-check-circle mdc-list-item__graphic text-success"></i>
-      } else if (status === 2) {
         return <i className="fas fa-ellipsis-h mdc-list-item__graphic orange text-warning"></i>
+      } else if (status === 2) {
+        return <i className="fas fa-check-circle mdc-list-item__graphic text-success"></i>
       } else if (status === 3) {
         return <i className="fas fa-exclamation-triangle mdc-list-item__graphic text-danger"></i>
       }
