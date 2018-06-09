@@ -26,7 +26,7 @@ class UserScreen extends Component {
 
       <div className="screen">{this.props.isAdmin ?
       <div onClick={this._graphToggle}>Graph
-      {this.state.showGraph ? <Graph/>: <a/>}
+      {this.state.showGraph ? <Graph selectedReceipts={this.props.selectedReceipts}/>: <a/>}
       </div>: <a/> }
         <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list">
           { this.props.selectedReceipts.map(receipt => <Receipt { ...receipt } isAdmin={this.props.isAdmin}/> )}
