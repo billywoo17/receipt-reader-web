@@ -4,10 +4,6 @@ var BarChart = require("react-chartjs").Bar;
 
 class Graph extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   categoryChart(dataArray){
     let colors = ["#EC5850", "#EF9E65", "#FBD368", "#64DBA0",  "#0B7B85"];
     let results = [];
@@ -52,7 +48,7 @@ class Graph extends Component {
 
   usersChart(dataArray) {
     let fillColor = "rgb(11, 165, 168, 1)";
-    let returnValue = {datasets:[{fillColor:fillColor, data:[]}]};
+    let returnValue = {labels:[], datasets:[{fillColor:fillColor, data:[]}]};
     let results = [];
     dataArray.forEach(function(d){
       let match = results.find(function(r) {return r.label === `${d.first_name} ${d.last_name}`})
@@ -68,7 +64,7 @@ class Graph extends Component {
       }
     })
     results.forEach(function(i){
-      returnValue.labels = [i.label];
+      returnValue.labels.push(i.label);
       returnValue.datasets[0].data.push(i.value);
     })
     return returnValue
@@ -77,6 +73,7 @@ class Graph extends Component {
   render() {
     console.log("all data:", this.props.selectedReceipts)
     console.log("projs: ", this.projectChart(this.props.selectedReceipts))
+    console.log("users:", this.usersChart(this.props.selectedReceipts))
     return (
       <div>
       <DoughnutChart data={this.categoryChart(this.props.selectedReceipts)}/>
