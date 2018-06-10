@@ -98,6 +98,18 @@ class App extends Component {
     window.history.back();
   }
 
+
+//when the "All projects" section is clicked, set the receipt state to all receipts and highlight "All projects"
+  allSectionClicked() {
+    this.setState({selectedReceipts: this.state.receipts});
+    const project_list = document.getElementsByClassName('projectListItem');
+    [].forEach.call(project_list, function(project) {
+        project.style.backgroundColor = 'white'
+    });
+    document.getElementById('project_all').style.backgroundColor = 'silver';
+  }
+
+
   selectedProject(project){
     let selectedReceiptstArr = [];
     this.setState({selectedProject: project});
@@ -135,7 +147,7 @@ class App extends Component {
           (this.state.showProject ? <CreateProject _toggleCreateProject = {this._toggleCreateProject}/>: <a/>): <a/>}
           <div className="mdc-drawer__content">
             <nav className="mdc-list">
-              <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All Projects </a>
+              <a id='project_all' className="mdc-list-item projectListItem" onClick= {() => this.allSectionClicked()}> All Projects </a>
               {this.state.projects.sort().map((projects) =>
                 (<a id={projects} className="mdc-list-item projectListItem" onClick={() => this.selectedProject(projects)} value={projects} > {projects} </a>)
               )}
