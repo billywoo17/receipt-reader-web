@@ -20,13 +20,13 @@ class Graph extends Component {
       }
     })
     results.forEach(function(r, i) {
-      r.color = colors[i]
+      r.color = colors[i%5]
     })
     return results;
   }
 
     projectChart(dataArray){
-    let colors = ["#0B7B85","#64DBA0","#FBD368", "#EF9E65",   "#EC5850"];
+    let colors = ["#0B7B85","#64DBA0","#FBD368", "#EF9E65", "#EC5850"];
     let results = [];
     dataArray.forEach(function(d){
       let match = results.find(function(r) {return r.label === d.project_name})
@@ -41,7 +41,7 @@ class Graph extends Component {
       }
     })
     results.forEach(function(r, i) {
-      r.color = colors[i]
+      r.color = colors[i%5]
     })
     return results;
   }
@@ -76,9 +76,9 @@ class Graph extends Component {
     console.log("users:", this.usersChart(this.props.selectedReceipts))
     return (
       <div>
-      <DoughnutChart data={this.categoryChart(this.props.selectedReceipts)}/>
-      <DoughnutChart data={this.projectChart(this.props.selectedReceipts)}/>
-      <BarChart data={this.usersChart(this.props.selectedReceipts)}/>
+        <DoughnutChart data={this.categoryChart(this.props.selectedReceipts)}/>
+        <DoughnutChart data={this.projectChart(this.props.selectedReceipts)}/>
+        <BarChart data={this.usersChart(this.props.selectedReceipts)}/>
       </div>
       );
   }

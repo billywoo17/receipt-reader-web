@@ -116,7 +116,7 @@ class App extends Component {
     return (
       <div className ="flex-element">
         <div className= "title">
-          <h1 className = "app-name"> <i className="fas fa-receipt"></i> Paperless</h1>
+          <h1 className = "product-name"> <i className="fas fa-receipt"></i> Paperless</h1>
           <div className = "right-title-bar">
             <h4 className = "user-info"> Hello, {this.state.username}</h4>
             <button className="mdc-button mdc-button--raised logout-button" onClick={this.logout}>logout</button>
@@ -136,9 +136,7 @@ class App extends Component {
             </nav>
           </div>
         </nav>
-
         <UserScreen selectedReceipts={this.state.selectedReceipts} isAdmin={this.state.isAdmin}/>
-
       </div>
     );
   }

@@ -5,10 +5,11 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-.screen {
-  width: 50%;
-  margin: 80px auto 0;
+.info-screen {
+  margin: 100px auto 0 ;
   order: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -24,7 +25,7 @@
   display: inline;
 }
 
-.app-name {
+.product-name {
   float:left;
   font-weight: bold;
   font-family: 'Nunito', sans-serif;
@@ -35,12 +36,11 @@
   padding: 0 50px;
 }
 
-.total{
+.total-amount{
   color: black;
   font-weight: bold;
   padding: 20px;
   text-align: right;
-  margin: auto;
 }
 
 .flex-element {
@@ -100,4 +100,22 @@
   float: right;
   padding: 0 40px;
   display: inline-flex;
+}
+
+.graph-container {
+  order: 1;
+  border-bottom: 1px solid silver;
+}
+
+.list-container {
+  order: 2;
+  margin: auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.each-chart {
+  display: flex;
+  flex-direction: column;
 }
