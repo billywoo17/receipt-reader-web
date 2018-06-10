@@ -107,8 +107,12 @@ class App extends Component {
       }
     });
     this.setState({selectedReceipts: selectedReceiptstArr});
-    console.log(document.getElementById(project));
-    document.getElementById(project).style.color = 'green';
+    //selected project list will have background highlighted on sidebar
+    const project_list = document.getElementsByClassName('projectListItem');
+    [].forEach.call(project_list, function(project) {
+        project.style.backgroundColor = 'white'
+    });
+    document.getElementById(project).style.backgroundColor = 'silver';
     }
 
   _toggleCreateProject(){
@@ -127,13 +131,13 @@ class App extends Component {
         <nav className="drawer mdc-drawer mdc-drawer--permanent">
           <div className="mdc-drawer__toolbar-spacer" onClick={this._toggleCreateProject}>
             <h4>{this.state.admin ? 'Create Projects' : 'Projects'} </h4>
-          </div>{this.state.isAdmin ? 
+          </div>{this.state.isAdmin ?
           (this.state.showProject ? <CreateProject _toggleCreateProject = {this._toggleCreateProject}/>: <a/>): <a/>}
           <div className="mdc-drawer__content">
             <nav className="mdc-list">
               <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All Projects </a>
               {this.state.projects.sort().map((projects) =>
-                (<a id={projects} className="mdc-list-item" onClick={() => this.selectedProject(projects)} value={projects} > {projects} </a>)
+                (<a id={projects} className="mdc-list-item projectListItem" onClick={() => this.selectedProject(projects)} value={projects} > {projects} </a>)
               )}
             </nav>
           </div>
