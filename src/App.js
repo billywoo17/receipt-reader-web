@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import './App.css';
 // import {Link} from 'react-router-dom';
 import Moment from 'react-moment';
@@ -7,107 +9,95 @@ import Receipt from './Receipt.js';
 import UserScreen from './screens/UserScreen';
 import CreateProject from './component/CreateProject';
 require('dotenv').config()
-class App extends Component {
 
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       receipts: [],
       username: localStorage.getItem('name'),
       projects: [],
-      selectedProject:"",
-      selectedReceipts:[],
+      selectedProject: "",
+      selectedReceipts: [],
       isAdmin: false,
       showProject: false,
     };
     this._toggleCreateProject = this._toggleCreateProject.bind(this);
     this._addNewProject = this._addNewProject.bind(this);
   }
-
-  // getUser(user_id) {
-  //   const route = "http://10.30.31.122:8080/user/" + this.props.user_id;
-  //   console.log(route);
-  //   fetch(route, {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         // 'Authorization': `Bearer ${token}`
-  //       }
-  //     })
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       console.log(res);
-  //     })
-  // }
-
   componentWillMount() {
     fetch('/projects', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    .then(res => res.json())
-    .then(results => {
-      this.setState({
-        projects: results.map(project => project.project_name)
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
       })
-    })
-
-
-      let token = localStorage.getItem('jwtToken');
-      let query = localStorage.getItem('isAdmin') ? "users" : "user"
-      let route = `/${query}/receipts`
-
-      fetch(route, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          }
+      .then(res => res.json())
+      .then(results => {
+        this.setState({
+          projects: results.map(project => project.project_name)
         })
-        .then(res => res.json())
-        .then(results => {
-            let receipts = results.receipts
-            this.setState({
-              receipts: results.receipts,
-              isAdmin: results.isAdmin,
-            })
-            if(!this.state.isAdmin){
-              this.setState({
-                projects: results.receipts.map(receipt => receipt.project_name)
-              })
-            }
+      })
 
-            let projectObj = {};
-            let projectArr = [];
-            this.state.projects.forEach(function (project) {
-              projectObj[project] = project;
-            });
 
-            for (let key in projectObj) {
-              projectArr.push(key);
-            }
+    let token = localStorage.getItem('jwtToken');
+    let query = localStorage.getItem('isAdmin') ? "users" : "user"
+    let route = `/${query}/receipts`
 
-            this.setState({
-              projects: projectArr,
-              selectedReceipts: this.state.receipts,
-              admin: this.props.extra
-            });
-          })
-          .catch((error) => {
-            console.log(error)
+    fetch(route, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(res => res.json())
+      .then(results => {
+        let receipts = results.receipts
+        this.setState({
+          receipts: results.receipts,
+          isAdmin: results.isAdmin,
+        })
+        if (!this.state.isAdmin) {
+          this.setState({
+            projects: results.receipts.map(receipt => receipt.project_name)
           })
         }
 
-      total(receiptsArr) {
-        var sum = 0;
-        receiptsArr.forEach(function (value) {
-          sum += value.total;
+        let projectObj = {};
+        let projectArr = [];
+        this.state.projects.forEach(function (project) {
+          projectObj[project] = project;
         });
-        return sum;
-      }
+
+        for (let key in projectObj) {
+          projectArr.push(key);
+        }
+
+        this.setState({
+          projects: projectArr,
+          selectedReceipts: this.state.receipts,
+          admin: this.props.extra
+        });
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  componentDidMount() {
+    document.getElementById('project_all').style.backgroundColor = 'silver';
+  }
+
+
+  total(receiptsArr) {
+    var sum = 0;
+    receiptsArr.forEach(function (value) {
+      sum += value.total;
+    });
+    return sum;
+  }
 
   logout() {
     localStorage.removeItem("jwtToken");
@@ -116,26 +106,55 @@ class App extends Component {
     window.history.back();
   }
 
-  selectedProject(project){
+
+  //when the "All projects" section is clicked, set the receipt state to all receipts and highlight "All projects"
+  allSectionClicked() {
+    this.setState({
+      selectedReceipts: this.state.receipts
+    });
+    const project_list = document.getElementsByClassName('projectListItem');
+    [].forEach.call(project_list, function (project) {
+      project.style.backgroundColor = 'white'
+    });
+    document.getElementById('project_all').style.backgroundColor = 'silver';
+  }
+
+
+  selectedProject(project) {
     let selectedReceiptstArr = [];
-    this.setState({selectedProject: project});
-    this.state.receipts.forEach(function(receipt){
-      if (receipt.project_name === project){
+    this.setState({
+      selectedProject: project
+    });
+    this.state.receipts.forEach(function (receipt) {
+      if (receipt.project_name === project) {
         selectedReceiptstArr.push(receipt);
       }
     });
-    this.setState({selectedReceipts: selectedReceiptstArr});
-    }
-
-  _toggleCreateProject(){
-    this.setState({showProject: !this.state.showProject})
+    this.setState({
+      selectedReceipts: selectedReceiptstArr
+    });
+    //selected project list will have background highlighted on sidebar
+    const project_list = document.getElementsByClassName('projectListItem');
+    [].forEach.call(project_list, function (project) {
+      project.style.backgroundColor = 'white'
+    });
+    document.getElementById(project).style.backgroundColor = 'silver';
   }
 
-  _addNewProject(projectArray){
-    this.setState({projects: projectArray})
+  _toggleCreateProject() {
+    this.setState({
+      showProject: !this.state.showProject
+    })
+  }
+
+  _addNewProject(projectArray) {
+    this.setState({
+      projects: projectArray
+    })
   }
 
   render() {
+
     return (
       <div className ="flex-element">
         <div className= "title">
@@ -148,20 +167,19 @@ class App extends Component {
         <nav className="drawer mdc-drawer mdc-drawer--permanent">
           <div className="mdc-drawer__toolbar-spacer" onClick={this._toggleCreateProject}>
             <h4>{this.state.admin ? 'Create Projects' : 'Projects'} </h4>
-          </div>{this.state.isAdmin ? 
+          </div>
+          {this.state.isAdmin ?
           (this.state.showProject ? <CreateProject _toggleCreateProject = {this._toggleCreateProject} addProject = {this._addNewProject} currentProject = {this.state.projects}/>: <a/>): <a/>}
           <div className="mdc-drawer__content">
             <nav className="mdc-list">
-              <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All Projects </a>
-              {this.state.projects  .map((projects) =>
-                (<a className="mdc-list-item" onClick={() => this.selectedProject(projects)} value={projects}> {projects} </a>)
+              <a id='project_all' className="mdc-list-item projectListItem" onClick= {() => this.allSectionClicked()}> All Projects </a>
+              {this.state.projects.map((projects) =>
+                (<a id={projects} className="mdc-list-item projectListItem" onClick={() => this.selectedProject(projects)} value={projects} > {projects} </a>)
               )}
             </nav>
           </div>
         </nav>
-
         <UserScreen selectedReceipts={this.state.selectedReceipts} isAdmin={this.state.isAdmin}/>
-
       </div>
     );
   }
