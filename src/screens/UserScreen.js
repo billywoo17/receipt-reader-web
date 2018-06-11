@@ -23,19 +23,25 @@ class UserScreen extends Component {
   }
   render() {
     return (
+      <div className="info-screen">
 
-      <div className="screen">{this.props.isAdmin ?
-      <div onClick={this._graphToggle}>Graph
-      {this.state.showGraph ? <Graph/>: <a/>}
-      </div>: <a/> }
-        <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list">
-          { this.props.selectedReceipts.map(receipt => <Receipt { ...receipt } isAdmin={this.props.isAdmin}/> )}
-        </ul>
-
-        <div className="total">
-          Total: ${parseFloat(this.total(this.props.selectedReceipts)/100).toFixed(2)}
+        {this.props.isAdmin ?
+        <div>
+        <h4 className="admin-title"> Admin Dashboard </h4>
+        <div className="graph-container">
+        <Graph selectedReceipts={this.props.selectedReceipts}/>
         </div>
+        </div>: <a/> }
+        <div className="list-container">
+          <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list main-list">
+            { this.props.selectedReceipts.map(receipt => <Receipt { ...receipt } isAdmin={this.props.isAdmin}/> )}
+          </ul>
 
+          <div className="total-amount">
+            Total: ${parseFloat(this.total(this.props.selectedReceipts)/100).toFixed(2)}
+          </div>
+
+        </div>
       </div>
       );
   }

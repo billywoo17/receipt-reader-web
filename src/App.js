@@ -158,18 +158,24 @@ class App extends Component {
     return (
       <div className ="flex-element">
         <div className= "title">
-          <h1 className = "app-name"> <i className="fas fa-receipt"></i> Paperless</h1>
+          <h1 className = "product-name"> <i className="fas fa-receipt"></i> Paperless</h1>
           <div className = "right-title-bar">
             <h4 className = "user-info"> Hello, {this.state.username}</h4>
-            <button className="mdc-button mdc-button--raised logout-button" onClick={this.logout}>logout</button>
+            <button className="btn btn-lg logout-button" onClick={this.logout}>Log Out</button>
           </div>
         </div>
         <nav className="drawer mdc-drawer mdc-drawer--permanent">
           <div className="mdc-drawer__toolbar-spacer" onClick={this._toggleCreateProject}>
+<<<<<<< HEAD
             <h4>{this.state.admin ? 'Create Projects' : 'Projects'} </h4>
           </div>
           {this.state.isAdmin ?
           (this.state.showProject ? <CreateProject _toggleCreateProject = {this._toggleCreateProject} addProject = {this._addNewProject} currentProject = {this.state.projects}/>: <a/>): <a/>}
+=======
+            <h4>{this.state.isAdmin ? 'Create Projects' : 'Projects'} </h4>
+          </div>{this.state.isAdmin ?
+          (this.state.showProject ? <CreateProject _toggleCreateProject = {this._toggleCreateProject}/>: <a/>): <a/>}
+>>>>>>> 5c285bc2c736d94fdefc34b01d2c8e2f0badb92c
           <div className="mdc-drawer__content">
             <nav className="mdc-list">
               <a id='project_all' className="mdc-list-item projectListItem" onClick= {() => this.allSectionClicked()}> All Projects </a>
