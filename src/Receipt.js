@@ -86,19 +86,19 @@ class Receipt extends Component {
           >
           <div className="modal-list">
             <h2 className="list-align">Details</h2>
-            <ul className="mdc-list">
+            <ul className="mdc-list receipt-font">
               <li className="mdc-list-item">Purchased date: <Moment format="DD/MM/YYYY">{date}</Moment></li>
               <li className="mdc-list-item">Location: {location}</li>
               <li className="mdc-list-item">Description: {description}</li>
               <li className="mdc-list-item">Amount: ${parseFloat(total/100).toFixed(2)}</li>
               <li className="mdc-list-item">Status: {statusWord[this.state.status]}</li>
-              {this.props.isAdmin ? 
+              {this.props.isAdmin ?
               <li className="mdc-list-item">
-              <i className="fas fa-check-circle  text-success" onClick={this._approved}></i>
-              <i className="fas fa-exclamation-triangle  text-danger" onClick={this._denied}></i>
+              <i className="fas fa-check-circle text-success status-button" onClick={this._approved}></i>
+              <i className="fas fa-exclamation-triangle text-danger status-button" onClick={this._denied}></i>
               </li>: <li/>}
             </ul>
-            <button className="mdc-button mdc-button--raised list-align" onClick={this.toggleModal}>Close</button>
+            <button className="btn btn-lg close-button list-align" onClick={this.toggleModal}>Close</button>
           </div>
           <div className="modal-pic">
             <img src={image_url} alt="demo" className="receipt-pic"/>

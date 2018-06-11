@@ -119,7 +119,7 @@ class App extends Component {
           <h1 className = "product-name"> <i className="fas fa-receipt"></i> Paperless</h1>
           <div className = "right-title-bar">
             <h4 className = "user-info"> Hello, {this.state.username}</h4>
-            <button className="mdc-button mdc-button--raised logout-button" onClick={this.logout}>logout</button>
+            <button className="btn btn-lg logout-button" onClick={this.logout}>Log Out</button>
           </div>
         </div>
         <nav className="drawer mdc-drawer mdc-drawer--permanent">

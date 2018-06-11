@@ -33,14 +33,14 @@
 }
 
 .user-info {
-  margin: 29px 0;
+  margin: 23px 0;
   padding: 0 50px;
 }
 
 .total-amount{
   color: black;
   font-weight: bold;
-  padding: 20px;
+  padding: 2em 0;
   text-align: right;
 }
 
@@ -94,19 +94,26 @@
 
 .logout-button {
   float: right;
-  margin: 22px 0;
+  margin: 16px 0;
+  background-color: #0ba5a8;
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+}
+.logout-button:hover {
+  background-color: white;
+  color: #0ba5a8;
 }
 
 .right-title-bar {
   float: right;
-  padding: 0 40px;
+  padding: 0 4em;
   display: inline-flex;
 }
 
 .graph-container {
   order: 1;
   display: flex;
-  fle-direction: row;
+  flex-direction: row;
 }
 
 .list-container {
@@ -131,7 +138,8 @@
 
 .graph-title {
   margin: 5px auto;
-  text-align: center
+  text-align: center;
+  border-bottom: 2px solid black;
 }
 
 .cat-chart {
@@ -156,10 +164,30 @@
 }
 
 .main-list {
-  margin: 20px 0 0 0;
+  margin: 2em 0;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 .admin-title {
   text-align: center;
   font-weight: bold;
+}
+
+.close-button {
+  background-color: #0ba5a8;
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+}
+.close-button:hover {
+  background-color: white;
+  color: #0ba5a8;
+}
+
+.status-button {
+  font-size: 2em;
+  text-align: center;
+}
+
+.receipt-font {
+  font-family: 'Nunito Sans', sans-serif;
 }
