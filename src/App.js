@@ -83,6 +83,11 @@ class App extends Component {
       })
   }
 
+  componentDidMount(){
+    document.getElementById('project_all').style.backgroundColor = 'silver';
+  }
+
+
   total(receiptsArr) {
     var sum = 0;
     receiptsArr.forEach(function (value) {
@@ -99,7 +104,7 @@ class App extends Component {
   }
 
 
-//when the "All projects" section is clicked, set the receipt state to all receipts and highlight "All projects"
+  //when the "All projects" section is clicked, set the receipt state to all receipts and highlight "All projects"
   allSectionClicked() {
     this.setState({selectedReceipts: this.state.receipts});
     const project_list = document.getElementsByClassName('projectListItem');
@@ -125,12 +130,14 @@ class App extends Component {
         project.style.backgroundColor = 'white'
     });
     document.getElementById(project).style.backgroundColor = 'silver';
-    }
+  }
 
   _toggleCreateProject(){
     this.setState({showProject: !this.state.showProject})
   }
+
   render() {
+
     return (
       <div className ="flex-element">
         <div className= "title">
