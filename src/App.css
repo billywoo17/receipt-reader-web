@@ -1048,14 +1048,9 @@ a.mdc-list-item {
   margin: 10px; }
 
 .modal {
-<<<<<<< HEAD
-  margin: 15vh 25vw 15vh 25vw;
+  margin: 15vh 20vw 15vh 20vw;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   pointer-events: initial; }
-=======
-  margin: 15vh 15vw 15vh 15vw;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
->>>>>>> 5c285bc2c736d94fdefc34b01d2c8e2f0badb92c
 
 .modal-list {
   order: 2;
@@ -1074,8 +1069,7 @@ a.mdc-list-item {
 
 .close-button {
   background-color: black;
-  color: white;
-  font-weight: bold; }
+  color: white; }
 
 .list-align {
   margin: 0 0 0 16px; }
