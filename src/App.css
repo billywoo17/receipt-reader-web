@@ -1001,10 +1001,11 @@ a.mdc-list-item {
   .mdc-ripple-surface--accent.mdc-ripple-upgraded {
     --mdc-ripple-fg-opacity: 0.16; }
 
-.screen {
-  width: 50%;
-  margin: 80px auto 0;
-  order: 2; }
+.info-screen {
+  margin: 100px auto 0;
+  order: 2;
+  display: flex;
+  flex-direction: column; }
 
 .title {
   position: fixed;
@@ -1018,21 +1019,21 @@ a.mdc-list-item {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   display: inline; }
 
-.app-name {
+.product-name {
   float: left;
   font-weight: bold;
-  font-family: 'Nunito', sans-serif; }
+  font-family: 'Nunito', sans-serif;
+  margin: 16px 0; }
 
 .user-info {
-  margin: 29px 0;
+  margin: 23px 0;
   padding: 0 50px; }
 
-.total {
+.total-amount {
   color: black;
   font-weight: bold;
-  padding: 20px;
-  text-align: right;
-  margin: auto; }
+  padding: 2em 0;
+  text-align: right; }
 
 .flex-element {
   display: flex;
@@ -1047,7 +1048,7 @@ a.mdc-list-item {
   margin: 10px; }
 
 .modal {
-  margin: 15vh 25vw 15vh 25vw;
+  margin: 15vh 20vw 15vh 20vw;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   pointer-events: initial; }
 
@@ -1068,17 +1069,92 @@ a.mdc-list-item {
 
 .close-button {
   background-color: black;
-  color: white;
-  font-weight: bold; }
+  color: white; }
 
 .list-align {
   margin: 0 0 0 16px; }
 
 .logout-button {
   float: right;
-  margin: 22px 0; }
+  margin: 16px 0;
+  background-color: #0ba5a8;
+  color: white;
+  font-family: 'Nunito Sans', sans-serif; }
+
+.logout-button:hover {
+  background-color: white;
+  color: #0ba5a8; }
 
 .right-title-bar {
   float: right;
-  padding: 0 40px;
+  padding: 0 4em;
   display: inline-flex; }
+
+.graph-container {
+  order: 1;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 2em; }
+
+.list-container {
+  order: 2;
+  margin: auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column; }
+
+.each-chart {
+  display: flex;
+  flex-direction: column; }
+
+.all-graphs {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  margin: 20px; }
+
+.graph-title {
+  margin: 5px auto;
+  text-align: center; }
+
+.cat-chart {
+  order: 1;
+  flex-basis: 30%;
+  display: flex;
+  flex-direction: column; }
+
+.proj-chart {
+  order: 3;
+  flex-basis: 30%;
+  display: flex;
+  flex-direction: column; }
+
+.user-chart {
+  order: 2;
+  flex-basis: 30%;
+  display: flex;
+  flex-direction: column; }
+
+.main-list {
+  margin: 3em 0;
+  font-family: 'Nunito Sans', sans-serif; }
+
+.admin-title {
+  text-align: center;
+  font-weight: bold; }
+
+.close-button {
+  background-color: #0ba5a8;
+  color: white;
+  font-family: 'Nunito Sans', sans-serif; }
+
+.close-button:hover {
+  background-color: white;
+  color: #0ba5a8; }
+
+.status-button {
+  font-size: 2em;
+  text-align: center; }
+
+.receipt-font {
+  font-family: 'Nunito Sans', sans-serif; }
