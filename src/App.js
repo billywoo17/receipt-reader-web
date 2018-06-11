@@ -21,6 +21,7 @@ class App extends Component {
       showProject: false,
     };
     this._toggleCreateProject = this._toggleCreateProject.bind(this);
+    this._addNewProject = this._addNewProject.bind(this);
   }
 
   // getUser(user_id) {
@@ -40,56 +41,73 @@ class App extends Component {
   // }
 
   componentWillMount() {
+    fetch('/projects', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(res => res.json())
+    .then(results => {
+      this.setState({
+        projects: results.map(project => project.project_name)
+      })
+    })
 
-    let token = localStorage.getItem('jwtToken');
-    let query = localStorage.getItem('isAdmin') ? "users" : "user"
-    let route = `/${query}/receipts`
 
-    fetch(route, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+      let token = localStorage.getItem('jwtToken');
+      let query = localStorage.getItem('isAdmin') ? "users" : "user"
+      let route = `/${query}/receipts`
+
+      fetch(route, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        })
+        .then(res => res.json())
+        .then(results => {
+            let receipts = results.receipts
+            this.setState({
+              receipts: results.receipts,
+              isAdmin: results.isAdmin,
+            })
+            if(!this.state.isAdmin){
+              this.setState({
+                projects: results.receipts.map(receipt => receipt.project_name)
+              })
+            }
+
+            let projectObj = {};
+            let projectArr = [];
+            this.state.projects.forEach(function (project) {
+              projectObj[project] = project;
+            });
+
+            for (let key in projectObj) {
+              projectArr.push(key);
+            }
+
+            this.setState({
+              projects: projectArr,
+              selectedReceipts: this.state.receipts,
+              admin: this.props.extra
+            });
+          })
+          .catch((error) => {
+            console.log(error)
+          })
         }
-      })
-      .then(res => res.json())
-      .then(results => {
-        let receipts = results.receipts
-        this.setState({
-          receipts: results.receipts,
-          isAdmin: results.isAdmin,
-          projects: results.receipts.map(x => x.project_name)
+
+      total(receiptsArr) {
+        var sum = 0;
+        receiptsArr.forEach(function (value) {
+          sum += value.total;
         });
-
-        let projectObj = {};
-        let projectArr = [];
-
-        this.state.projects.forEach(function (project) {
-          projectObj[project] = project;
-        });
-
-        for (let key in projectObj) {
-          projectArr.push(key);
-        }
-
-        this.setState({
-          projects: projectArr,
-          selectedReceipts: this.state.receipts,
-          admin:this.props.extra
-        });
-      })
-      .catch((error) =>{
-        console.log(error)
-      })
-  }
-
-  total(receiptsArr) {
-    var sum = 0;
-    receiptsArr.forEach(function (value) {
-      sum += value.total;
-    });
-    return sum;
-  }
+        return sum;
+      }
 
   logout() {
     localStorage.removeItem("jwtToken");
@@ -112,6 +130,11 @@ class App extends Component {
   _toggleCreateProject(){
     this.setState({showProject: !this.state.showProject})
   }
+
+  _addNewProject(projectArray){
+    this.setState({projects: projectArray})
+  }
+
   render() {
     return (
       <div className ="flex-element">
@@ -126,11 +149,11 @@ class App extends Component {
           <div className="mdc-drawer__toolbar-spacer" onClick={this._toggleCreateProject}>
             <h4>{this.state.admin ? 'Create Projects' : 'Projects'} </h4>
           </div>{this.state.isAdmin ? 
-          (this.state.showProject ? <CreateProject _toggleCreateProject = {this._toggleCreateProject}/>: <a/>): <a/>}
+          (this.state.showProject ? <CreateProject _toggleCreateProject = {this._toggleCreateProject} addProject = {this._addNewProject} currentProject = {this.state.projects}/>: <a/>): <a/>}
           <div className="mdc-drawer__content">
             <nav className="mdc-list">
               <a className="mdc-list-item" onClick= {() => this.setState({selectedReceipts: this.state.receipts})}> All Projects </a>
-              {this.state.projects.sort().map((projects) =>
+              {this.state.projects  .map((projects) =>
                 (<a className="mdc-list-item" onClick={() => this.selectedProject(projects)} value={projects}> {projects} </a>)
               )}
             </nav>

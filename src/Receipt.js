@@ -68,6 +68,7 @@ class Receipt extends Component {
 
     const { id, date, location, description, total, image_url, status_id} = this.props;
     return (
+      <div>
       <li className="mdc-list-item mdc-ripple-surface" key = {id} onClick={ this.toggleModal }>
         {statusCheck(this.state.status)}
         <span className="mdc-list-item__text" >
@@ -78,8 +79,9 @@ class Receipt extends Component {
           </span>
         <span className="mdc-list-item__meta">
           ${parseFloat(total/100).toFixed(2)}
-        </span>
-         <ReactModal
+        </span>         
+      </li>
+      <ReactModal
           className="modal flex-element"
           isOpen={this.state.isModalOpen}
           contentLabel="Modal"
@@ -104,7 +106,7 @@ class Receipt extends Component {
             <img src={image_url} alt="demo" className="receipt-pic"/>
           </div>
         </ReactModal>
-      </li>
+        </div>
     )
   }
 }
