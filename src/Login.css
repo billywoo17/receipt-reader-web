@@ -1438,3 +1438,7 @@ div.loginMain {
 #loginBackground {
   width: 100vw;
   height: 100vh; }
+
+@media only screen and (max-width: 800px) {
+  body {
+    background-color: lightblue; } }
