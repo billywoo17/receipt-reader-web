@@ -61,6 +61,7 @@
 .modal {
   margin: 15vh 25vw 15vh 25vw;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  pointer-events: initial;
 }
 
 .modal-list {
