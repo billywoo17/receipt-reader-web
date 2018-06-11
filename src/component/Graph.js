@@ -75,10 +75,19 @@ class Graph extends Component {
     console.log("projs: ", this.projectChart(this.props.selectedReceipts))
     console.log("users:", this.usersChart(this.props.selectedReceipts))
     return (
-      <div>
-        <DoughnutChart data={this.categoryChart(this.props.selectedReceipts)}/>
-        <DoughnutChart data={this.projectChart(this.props.selectedReceipts)}/>
-        <BarChart data={this.usersChart(this.props.selectedReceipts)}/>
+      <div className="all-graphs">
+        <div className="cat-chart" >
+          <p class="graph-title">Categories</p>
+          <DoughnutChart data={this.categoryChart(this.props.selectedReceipts)}/>
+        </div>
+        <div className="proj-chart">
+          <p class="graph-title">Projects</p>
+          <DoughnutChart data={this.projectChart(this.props.selectedReceipts)}/>
+        </div>
+        <div className="user-chart">
+          <p class="graph-title">Employees</p>
+          <BarChart data={this.usersChart(this.props.selectedReceipts)}/>
+        </div>
       </div>
       );
   }

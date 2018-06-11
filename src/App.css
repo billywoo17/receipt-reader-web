@@ -1022,7 +1022,8 @@ a.mdc-list-item {
 .product-name {
   float: left;
   font-weight: bold;
-  font-family: 'Nunito', sans-serif; }
+  font-family: 'Nunito', sans-serif;
+  margin: 16px 0; }
 
 .user-info {
   margin: 29px 0;
@@ -1084,7 +1085,8 @@ a.mdc-list-item {
 
 .graph-container {
   order: 1;
-  border-bottom: 1px solid silver; }
+  display: flex;
+  fle-direction: row; }
 
 .list-container {
   order: 2;
@@ -1096,3 +1098,38 @@ a.mdc-list-item {
 .each-chart {
   display: flex;
   flex-direction: column; }
+
+.all-graphs {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  margin: 20px; }
+
+.graph-title {
+  margin: 5px auto;
+  text-align: center; }
+
+.cat-chart {
+  order: 1;
+  flex-basis: 30%;
+  display: flex;
+  flex-direction: column; }
+
+.proj-chart {
+  order: 3;
+  flex-basis: 30%;
+  display: flex;
+  flex-direction: column; }
+
+.user-chart {
+  order: 2;
+  flex-basis: 30%;
+  display: flex;
+  flex-direction: column; }
+
+.main-list {
+  margin: 20px 0 0 0; }
+
+.admin-title {
+  text-align: center;
+  font-weight: bold; }

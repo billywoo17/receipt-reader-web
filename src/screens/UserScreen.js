@@ -26,9 +26,11 @@ class UserScreen extends Component {
       <div className="info-screen">
 
         {this.props.isAdmin ?
-        <div className="graph-container">Graph
-          {this.state.showGraph ? <Graph selectedReceipts={this.props.selectedReceipts}/>: <a/>}
-          <button type="button" className="mdc-button mdc-button--raised" onClick={this._graphToggle}>{this.state.showGraph ? "Hide" : "Show"}</button>
+        <div>
+        <h4 className="admin-title"> Admin Dashboard </h4>
+        <div className="graph-container">
+        <Graph selectedReceipts={this.props.selectedReceipts}/>
+        </div>
         </div>: <a/> }
         <div className="list-container">
           <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list main-list">
