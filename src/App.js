@@ -124,7 +124,7 @@ class App extends Component {
         </div>
         <nav className="drawer mdc-drawer mdc-drawer--permanent">
           <div className="mdc-drawer__toolbar-spacer" onClick={this._toggleCreateProject}>
-            <h4>{this.state.admin ? 'Create Projects' : 'Projects'} </h4>
+            <h4>{this.state.isAdmin ? 'Create Projects' : 'Projects'} </h4>
           </div>{this.state.isAdmin ?
           (this.state.showProject ? <CreateProject _toggleCreateProject = {this._toggleCreateProject}/>: <a/>): <a/>}
           <div className="mdc-drawer__content">

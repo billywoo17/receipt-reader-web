@@ -83,6 +83,7 @@ class Receipt extends Component {
           className="modal flex-element"
           isOpen={this.state.isModalOpen}
           contentLabel="Modal"
+          style={{content: {backgroundColor:"white"} }}
           >
           <div className="modal-list">
             <h2 className="list-align">Details</h2>
