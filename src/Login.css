@@ -1440,5 +1440,9 @@ div.loginMain {
   height: 100vh; }
 
 @media only screen and (max-width: 800px) {
-  body {
-    background-color: lightblue; } }
+  div.loginMain {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; } }

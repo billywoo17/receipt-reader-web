@@ -69,6 +69,12 @@ div.loginMain {
 
 
 @media only screen and (max-width: 800px) {
-
+  div.loginMain {
+    width: 100vw;
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center
+  }
 
 }
