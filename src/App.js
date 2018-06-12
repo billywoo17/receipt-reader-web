@@ -91,14 +91,6 @@ class App extends Component {
   }
 
 
-  total(receiptsArr) {
-    var sum = 0;
-    receiptsArr.forEach(function (value) {
-      sum += value.total;
-    });
-    return sum;
-  }
-
   logout() {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("isAdmin");

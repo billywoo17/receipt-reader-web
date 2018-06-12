@@ -10,13 +10,18 @@ class Receipt extends Component {
     super(props);
     this.state = {
       isModalOpen: false,
-      status:this.props.status_id
+      status:props.status_id
     }
     this.toggleModal = this.toggleModal.bind(this);
     this._approved = this._approved.bind(this);
     this._denied = this._denied.bind(this);
   }
-
+  //look into this more. kind of hacky
+  componentDidUpdate(prevProps) {
+    if (prevProps.status_id !== this.props.status_id && this.props.status_id !== this.state.status) {
+      this.setState({status: this.props.status_id})
+    }
+  }
   toggleModal() {
     this.setState({
       isModalOpen: !this.state.isModalOpen
@@ -24,16 +29,17 @@ class Receipt extends Component {
   }
 
   _updateServer(receipt_id, status_id) {
-    fetch('/users/receipt/status', {
+    return fetch('/users/receipt/status', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         receipt_id: receipt_id,
-        status_id: status_id,
+        status_id: status_id
       }),
-    }).catch((err) => {
+    })
+    .catch((err) => {
       alert("can't update status", err);
     });
   }
@@ -41,7 +47,7 @@ class Receipt extends Component {
 
   _approved(){
     this.setState({status : 2})
-    this._updateServer(this.props.id, 2)
+    this._updateServer(this.props.id, 2);
   }
 
   _denied(){
@@ -49,17 +55,17 @@ class Receipt extends Component {
     this._updateServer(this.props.id, 3)
   }
 
-  render() {
+  statusCheck(status) {
+    if (status === 1) {
+      return <i className="fas fa-ellipsis-h mdc-list-item__graphic orange text-warning"></i>
+    } else if (status === 2) {
+      return <i className="fas fa-check-circle mdc-list-item__graphic text-success"></i>
+    } else if (status === 3) {
+      return <i className="fas fa-exclamation-triangle mdc-list-item__graphic text-danger"></i>
+    }
+  };
 
-    function statusCheck (status) {
-      if (status === 1) {
-        return <i className="fas fa-ellipsis-h mdc-list-item__graphic orange text-warning"></i>
-      } else if (status === 2) {
-        return <i className="fas fa-check-circle mdc-list-item__graphic text-success"></i>
-      } else if (status === 3) {
-        return <i className="fas fa-exclamation-triangle mdc-list-item__graphic text-danger"></i>
-      }
-    };
+  render() {    
     let statusWord = {
       1:"Pending",
       2:"Approved",
@@ -70,7 +76,7 @@ class Receipt extends Component {
     return (
       <div>
       <li className="mdc-list-item mdc-ripple-surface" key = {id} onClick={ this.toggleModal }>
-        {statusCheck(this.state.status)}
+        {this.statusCheck(this.state.status)}
         <span className="mdc-list-item__text" >
           <Moment format="DD/MM/YYYY">{date}</Moment>
             <span className="mdc-list-item__secondary-text">
