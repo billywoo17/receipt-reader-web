@@ -79,7 +79,7 @@ class Receipt extends Component {
           </span>
         <span className="mdc-list-item__meta">
           ${parseFloat(total/100).toFixed(2)}
-        </span>         
+        </span>
       </li>
       <ReactModal
           className="modal flex-element"
@@ -88,20 +88,31 @@ class Receipt extends Component {
           style={{content: {backgroundColor:"white"} }}
           >
           <div className="modal-list">
-            <h2 className="list-align">Details</h2>
-            <ul className="mdc-list receipt-font">
-              <li className="mdc-list-item">Purchased date: <Moment format="DD/MM/YYYY">{date}</Moment></li>
-              <li className="mdc-list-item">Location: {location}</li>
-              <li className="mdc-list-item">Description: {description}</li>
-              <li className="mdc-list-item">Amount: ${parseFloat(total/100).toFixed(2)}</li>
-              <li className="mdc-list-item">Status: {statusWord[this.state.status]}</li>
+            <h2 className="">Details</h2>
+            <div className="receipt-modal-list">
+              <p className="modal-list-item">Purchased Date: <Moment format="DD/MM/YYYY">{date}</Moment></p>
+              <p className="modal-list-item">Location: {location}</p>
+              <p className="modal-list-item">Description: {description}</p>
+              <p className="modal-list-item">Amount: ${parseFloat(total/100).toFixed(2)}</p>
+              <p className="modal-list-item">Status: {statusWord[this.state.status]}</p>
               {this.props.isAdmin ?
-              <li className="mdc-list-item">
-              <i className="fas fa-check-circle text-success status-button" onClick={this._approved}></i>
-              <i className="fas fa-exclamation-triangle text-danger status-button" onClick={this._denied}></i>
-              </li>: <li/>}
-            </ul>
-            <button className="btn btn-lg close-button list-align" onClick={this.toggleModal}>Close</button>
+              <div className="admin-buttons">
+              <button type="button" class="btn btn-light">
+              <i className="fas fa-check-circle text-success icons-size" onClick={this._approved}></i>
+              </button>
+              <button type="button" class="btn btn-light">
+              <i className="fas fa-exclamation-triangle text-danger icons-size" onClick={this._denied}></i>
+              </button>
+              <button className="btn close-button" onClick={this.toggleModal}>
+              Close
+              </button>
+              </div>
+              :
+              <button className="btn close-button" onClick={this.toggleModal}>
+              Close
+              </button>}
+            </div>
+
           </div>
           <div className="modal-pic">
             <img src={image_url} alt="demo" className="receipt-pic"/>
