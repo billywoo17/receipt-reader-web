@@ -1145,7 +1145,8 @@ a.mdc-list-item {
   background-color: #0ba5a8;
   color: white;
   font-family: 'Nunito Sans', sans-serif;
-  margin: 0.5em; }
+  margin: 0.25em;
+  font-size: 2em; }
 
 .close-button:hover {
   background-color: white;
