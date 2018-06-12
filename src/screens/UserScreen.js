@@ -18,6 +18,26 @@ class UserScreen extends Component {
     });
     return sum;
   }
+
+  approvedTotal(receiptsArr) {
+    var sum = 0;
+    receiptsArr.forEach(function (value) {
+      if(value.status_id === 2){
+      sum += value.total;
+      }
+    });
+    return sum;
+  }
+
+  rejectedTotal(receiptsArr) {
+    var sum = 0;
+    receiptsArr.forEach(function (value) {
+      if(value.status_id === 3){
+      sum += value.total;
+      }
+    });
+    return sum;
+  }
   _graphToggle(){
     this.setState({showGraph: !this.state.showGraph})
   }
@@ -38,6 +58,8 @@ class UserScreen extends Component {
           </ul>
 
           <div className="total-amount">
+            Reject Total: ${parseFloat(this.rejectedTotal(this.props.selectedReceipts)/100).toFixed(2)}<br/>
+            Approved Total: ${parseFloat(this.approvedTotal(this.props.selectedReceipts)/100).toFixed(2)}<br/>
             Total: ${parseFloat(this.total(this.props.selectedReceipts)/100).toFixed(2)}
           </div>
 
