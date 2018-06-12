@@ -1056,7 +1056,11 @@ a.mdc-list-item {
 .modal-list {
   order: 2;
   margin: auto;
-  background-color: white; }
+  background-color: white;
+  font-family: 'Nunito Sans', sans-serif;
+  padding: 1em;
+  display: flex;
+  flex-direction: column; }
 
 .modal-pic {
   order: 1;
@@ -1067,13 +1071,6 @@ a.mdc-list-item {
 .receipt-pic {
   max-width: 400px;
   height: auto; }
-
-.close-button {
-  background-color: black;
-  color: white; }
-
-.list-align {
-  margin: 0 0 0 16px; }
 
 .logout-button {
   float: right;
@@ -1147,15 +1144,25 @@ a.mdc-list-item {
 .close-button {
   background-color: #0ba5a8;
   color: white;
-  font-family: 'Nunito Sans', sans-serif; }
+  font-family: 'Nunito Sans', sans-serif;
+  margin: 0.25em;
+  font-size: 2em; }
 
 .close-button:hover {
   background-color: white;
   color: #0ba5a8; }
 
-.status-button {
-  font-size: 2em;
-  text-align: center; }
+.icons-size {
+  font-size: 2em; }
 
-.receipt-font {
-  font-family: 'Nunito Sans', sans-serif; }
+.receipt-modal-list {
+  list-style: none; }
+
+.admin-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0.5em; }
+
+.modal-list-item {
+  padding: 0.5em 0;
+  margin: 0 0; }
