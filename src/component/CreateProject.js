@@ -11,7 +11,7 @@ class CreateProject extends Component {
   }
 
   submitForm() {
-    console.log(this.state.project)
+
     if(this.state.project){
     fetch('/projects', {
       method: 'POST',
@@ -26,6 +26,10 @@ class CreateProject extends Component {
     }).catch((err) => {
       alert("can't update status", err);
     });
+    let currentProject = this.props.currentProject
+    currentProject.unshift(this.state.project)
+    this.props.addProject(currentProject)
+
   }
 }
 
