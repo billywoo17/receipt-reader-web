@@ -15,6 +15,8 @@ class Receipt extends Component {
     this.toggleModal = this.toggleModal.bind(this);
     this._approved = this._approved.bind(this);
     this._denied = this._denied.bind(this);
+    this.approvedStatus = this.approvedStatus.bind(this);
+    this.deniedStatus = this.deniedStatus.bind(this);
   }
 
   toggleModal() {
@@ -40,14 +42,38 @@ class Receipt extends Component {
 
 
   _approved(){
-    this.setState({status : 2})
-    this._updateServer(this.props.id, 2)
+    this.setState({status : 2});
+    this._updateServer(this.props.id, 2);
+    // this.refs.approvedReceipt.className = "fas fa-check-circle text-success icons-size";
+
+    // this.refs.rejectedReceipt.className = "fas fa-exclamation-triangle text-secondary icons-size";
   }
 
   _denied(){
     this.setState({status : 3})
     this._updateServer(this.props.id, 3)
+    // this.refs.rejectedReceipt.className = "fas fa-exclamation-triangle text-danger icons-size";
+
+    // this.refs.approvedReceipt.className = "fas fa-check-circle text-secondary icons-size";
   }
+
+  approvedStatus(status) {
+      if(status === 2){
+        return <i className="fas fa-check-circle text-success icons-size" onClick={this._approved}></i>
+      }else{
+        return <i className="fas fa-check-circle text-secondary icons-size" onClick={this._approved}></i>
+      }
+    }
+
+  deniedStatus(status) {
+      if(status === 3){
+        return <i className="fas fa-exclamation-triangle text-danger icons-size" onClick={this._denied}></i>
+      }else{
+        return <i className="fas fa-exclamation-triangle text-secondary icons-size" onClick={this._denied}></i>
+      }
+    }
+
+
 
   render() {
 
@@ -65,6 +91,7 @@ class Receipt extends Component {
       2:"Approved",
       3:"Denied"
     }
+
 
     const { id, date, location, description, total, image_url, status_id} = this.props;
     return (
@@ -98,10 +125,10 @@ class Receipt extends Component {
               {this.props.isAdmin ?
               <div className="admin-buttons">
               <button type="button" class="btn btn-light">
-              <i className="fas fa-check-circle text-success icons-size" onClick={this._approved}></i>
+              {this.approvedStatus(this.state.status)}
               </button>
               <button type="button" class="btn btn-light">
-              <i className="fas fa-exclamation-triangle text-danger icons-size" onClick={this._denied}></i>
+              {this.deniedStatus(this.state.status)}
               </button>
               <button className="btn close-button" onClick={this.toggleModal}>
               Close

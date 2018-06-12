@@ -70,7 +70,7 @@ class Login extends Component {
 
     return (
       <div className="hello">
-      <img id="loginBackground" src="https://i2.wp.com/phototips.cc/wp-content/uploads/formidable/11/allied-leaders-C.jpg?fit=2864%2C2000&ssl=1" />
+      <img id="loginBackground" src="https://files.slack.com/files-pri/T2G8TE2E5-FB56FCPED/1685022-black-and-white-texture-of-old-wooden-door-stock-photo-wood.jpg" />
          <div className="loginMain">
             <div className="loginHeader">
                <i className="fas fa-receipt"></i>
