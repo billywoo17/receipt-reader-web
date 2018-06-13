@@ -28,6 +28,7 @@ class App extends Component {
   componentWillMount() {
     fetch('https://api.paperless.stream/projects', {
         method: 'GET',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -47,6 +48,7 @@ class App extends Component {
 
     fetch(route, {
         method: 'GET',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`

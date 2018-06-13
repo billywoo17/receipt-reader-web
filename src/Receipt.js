@@ -31,6 +31,7 @@ class Receipt extends Component {
   _updateServer(receipt_id, status_id) {
     return fetch('https://api.paperless.stream/users/receipt/status', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
