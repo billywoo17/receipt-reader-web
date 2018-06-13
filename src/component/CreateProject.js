@@ -13,7 +13,7 @@ class CreateProject extends Component {
   submitForm() {
 
     if(this.state.project){
-    fetch('/projects', {
+    fetch('http://ec2-18-188-40-128.us-east-2.compute.amazonaws.com:8080/projects', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
