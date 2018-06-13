@@ -16,12 +16,10 @@ class Receipt extends Component {
     this._approved = this._approved.bind(this);
     this._denied = this._denied.bind(this);
   }
-  //look into this more. kind of hacky
-  componentDidUpdate(prevProps) {
-    if (prevProps.status_id !== this.props.status_id && this.props.status_id !== this.state.status) {
-      this.setState({status: this.props.status_id})
-    }
+  componentWillReceiveProps(newProps) {
+    this.setState({status: newProps.status_id})
   }
+
   toggleModal() {
     this.setState({
       isModalOpen: !this.state.isModalOpen
