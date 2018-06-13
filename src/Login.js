@@ -71,7 +71,11 @@ class Login extends Component {
 
     return (
       <div className="hello">
+<<<<<<< HEAD
       <img id="loginBackground" src="https://img00.deviantart.net/6ee0/i/2008/131/7/8/crumpled_white_paper_texture_by_melemel.jpg" />
+=======
+      <img id="loginBackground" src="https://files.slack.com/files-pri/T2G8TE2E5-FB56FCPED/1685022-black-and-white-texture-of-old-wooden-door-stock-photo-wood.jpg" />
+>>>>>>> 5c76f30e72abd5d9fa42c1b629f84e6282e54695
          <div className="loginMain">
             <div className="loginHeader">
                <i className="fas fa-receipt"></i>

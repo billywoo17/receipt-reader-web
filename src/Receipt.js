@@ -11,19 +11,29 @@ class Receipt extends Component {
     this.state = {
       isModalOpen: false,
       status:props.status_id
-    }
+    };
     this.toggleModal = this.toggleModal.bind(this);
     this._approved = this._approved.bind(this);
     this._denied = this._denied.bind(this);
+    this.approvedStatus = this.approvedStatus.bind(this);
+    this.deniedStatus = this.deniedStatus.bind(this);
   }
+<<<<<<< HEAD
   componentWillReceiveProps(newProps) {
     this.setState({status: newProps.status_id})
+=======
+  //look into this more. kind of hacky
+  componentDidUpdate(prevProps) {
+    if (prevProps.status_id !== this.props.status_id && this.props.status_id !== this.state.status) {
+      this.setState({status: this.props.status_id});
+    }
+>>>>>>> 5c76f30e72abd5d9fa42c1b629f84e6282e54695
   }
 
   toggleModal() {
     this.setState({
       isModalOpen: !this.state.isModalOpen
-    })
+    });
   }
 
   _updateServer(receipt_id, status_id) {
@@ -53,6 +63,22 @@ class Receipt extends Component {
     this._updateServer(this.props.id, 3)
   }
 
+  approvedStatus(status) {
+      if(status === 2){
+        return <i className="fas fa-check-circle text-success icons-size" onClick={this._approved}></i>
+      }else{
+        return <i className="fas fa-check-circle text-secondary icons-size" onClick={this._approved}></i>
+      }
+    }
+
+  deniedStatus(status) {
+      if(status === 3){
+        return <i className="fas fa-exclamation-triangle text-danger icons-size" onClick={this._denied}></i>
+      }else{
+        return <i className="fas fa-exclamation-triangle text-secondary icons-size" onClick={this._denied}></i>
+      }
+    }
+
   statusCheck(status) {
     if (status === 1) {
       return <i className="fas fa-ellipsis-h mdc-list-item__graphic orange text-warning"></i>
@@ -63,55 +89,67 @@ class Receipt extends Component {
     }
   };
 
-  render() {    
+  render() {
     let statusWord = {
       1:"Pending",
       2:"Approved",
       3:"Denied"
     }
 
+
     const { id, date, location, description, total, image_url, status_id} = this.props;
     return (
       <div>
-      <li className="mdc-list-item mdc-ripple-surface" key = {id} onClick={ this.toggleModal }>
-        {this.statusCheck(this.state.status)}
-        <span className="mdc-list-item__text" >
-          <Moment format="DD/MM/YYYY">{date}</Moment>
-            <span className="mdc-list-item__secondary-text">
-              {location} - {description}
+        <li className="mdc-list-item mdc-ripple-surface" key = {id} onClick={ this.toggleModal }>
+          {this.statusCheck(this.state.status)}
+          <span className="mdc-list-item__text" >
+            <Moment format="DD/MM/YYYY">{date}</Moment>
+              <span className="mdc-list-item__secondary-text">
+                {location} - {description}
+              </span>
             </span>
+          <span className="mdc-list-item__meta">
+            ${parseFloat(total/100).toFixed(2)}
           </span>
-        <span className="mdc-list-item__meta">
-          ${parseFloat(total/100).toFixed(2)}
-        </span>         
-      </li>
-      <ReactModal
-          className="modal flex-element"
-          isOpen={this.state.isModalOpen}
-          contentLabel="Modal"
-          style={{content: {backgroundColor:"white"} }}
-          >
-          <div className="modal-list">
-            <h2 className="list-align">Details</h2>
-            <ul className="mdc-list receipt-font">
-              <li className="mdc-list-item">Purchased date: <Moment format="DD/MM/YYYY">{date}</Moment></li>
-              <li className="mdc-list-item">Location: {location}</li>
-              <li className="mdc-list-item">Description: {description}</li>
-              <li className="mdc-list-item">Amount: ${parseFloat(total/100).toFixed(2)}</li>
-              <li className="mdc-list-item">Status: {statusWord[this.state.status]}</li>
-              {this.props.isAdmin ?
-              <li className="mdc-list-item">
-              <i className="fas fa-check-circle text-success status-button" onClick={this._approved}></i>
-              <i className="fas fa-exclamation-triangle text-danger status-button" onClick={this._denied}></i>
-              </li>: <li/>}
-            </ul>
-            <button className="btn btn-lg close-button list-align" onClick={this.toggleModal}>Close</button>
-          </div>
-          <div className="modal-pic">
-            <img src={image_url} alt="demo" className="receipt-pic"/>
-          </div>
+        </li>
+        <ReactModal
+            className="modal flex-element"
+            isOpen={this.state.isModalOpen}
+            contentLabel="Modal"
+            style={{content: {backgroundColor:"white"} }}
+            >
+            <div className="modal-list">
+              <h2 className="">Details</h2>
+              <div className="receipt-modal-list">
+                <p className="modal-list-item">Purchased Date: <Moment format="DD/MM/YYYY">{date}</Moment></p>
+                <p className="modal-list-item">Location: {location}</p>
+                <p className="modal-list-item">Description: {description}</p>
+                <p className="modal-list-item">Amount: ${parseFloat(total/100).toFixed(2)}</p>
+                <p className="modal-list-item">Status: {statusWord[this.state.status]}</p>
+                {this.props.isAdmin ?
+                <div className="admin-buttons">
+                <button type="button" class="btn btn-light">
+                {this.approvedStatus(this.state.status)}
+                </button>
+                <button type="button" class="btn btn-light">
+                {this.deniedStatus(this.state.status)}
+                </button>
+                <button className="btn close-button" onClick={this.toggleModal}>
+                Close
+                </button>
+                </div>
+                :
+                <button className="btn close-button" onClick={this.toggleModal}>
+                Close
+                </button>}
+              </div>
+
+            </div>
+            <div className="modal-pic">
+              <img src={image_url} alt="demo" className="receipt-pic"/>
+            </div>
         </ReactModal>
-        </div>
+      </div>
     )
   }
 }
