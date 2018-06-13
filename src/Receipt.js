@@ -9,10 +9,10 @@ class Receipt extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalOpen: false,
+      isReceiptModalOpen: false,
       status:props.status_id
     };
-    this.toggleModal = this.toggleModal.bind(this);
+    this.toggleReceiptModal = this.toggleReceiptModal.bind(this);
     this._approved = this._approved.bind(this);
     this._denied = this._denied.bind(this);
     this.approvedStatus = this.approvedStatus.bind(this);
@@ -24,11 +24,13 @@ class Receipt extends Component {
       this.setState({status: this.props.status_id});
     }
   }
-  toggleModal() {
+  toggleReceiptModal() {
     this.setState({
-      isModalOpen: !this.state.isModalOpen
+      isReceiptModalOpen: !this.state.isReceiptModalOpen
     });
   }
+
+
 
   _updateServer(receipt_id, status_id) {
     return fetch('/users/receipt/status', {
@@ -94,7 +96,7 @@ class Receipt extends Component {
     const { id, date, location, description, total, image_url, status_id} = this.props;
     return (
       <div>
-        <li className="mdc-list-item mdc-ripple-surface" key = {id} onClick={ this.toggleModal }>
+        <li className="mdc-list-item mdc-ripple-surface" key = {id} onClick={ this.toggleReceiptModal }>
           {this.statusCheck(this.state.status)}
           <span className="mdc-list-item__text" >
             <Moment format="DD/MM/YYYY">{date}</Moment>
@@ -108,7 +110,7 @@ class Receipt extends Component {
         </li>
         <ReactModal
             className="modal flex-element"
-            isOpen={this.state.isModalOpen}
+            isOpen={this.state.isReceiptModalOpen}
             contentLabel="Modal"
             style={{content: {backgroundColor:"white"} }}
             >
@@ -128,12 +130,12 @@ class Receipt extends Component {
                 <button type="button" class="btn btn-light">
                 {this.deniedStatus(this.state.status)}
                 </button>
-                <button className="btn close-button" onClick={this.toggleModal}>
+                <button className="btn close-button" onClick={this.toggleReceiptModal}>
                 Close
                 </button>
                 </div>
                 :
-                <button className="btn close-button" onClick={this.toggleModal}>
+                <button className="btn close-button" onClick={this.toggleReceiptModal}>
                 Close
                 </button>}
               </div>
@@ -143,6 +145,8 @@ class Receipt extends Component {
               <img src={image_url} alt="demo" className="receipt-pic"/>
             </div>
         </ReactModal>
+
+
       </div>
     )
   }

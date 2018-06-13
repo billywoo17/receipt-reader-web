@@ -22,13 +22,14 @@ class CreateProject extends Component {
         project_name: this.state.project,
       }),
     }).then((results) =>{
-      this.props._toggleCreateProject()
+      console.log("we are in here", results);
+      this.props.toggleCreateProjectModal();
     }).catch((err) => {
       alert("can't update status", err);
     });
-    let currentProject = this.props.currentProject
-    currentProject.unshift(this.state.project)
-    this.props.addProject(currentProject)
+    let currentProject = this.props.currentProject;
+    currentProject.unshift(this.state.project);
+    this.props.addProject(currentProject);
 
   }
 }

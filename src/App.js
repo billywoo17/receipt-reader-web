@@ -8,7 +8,7 @@ import ReactModal from 'react-modal';
 import Receipt from './Receipt.js';
 import UserScreen from './screens/UserScreen';
 import CreateProject from './component/CreateProject';
-require('dotenv').config()
+require('dotenv').config();
 
 class App extends Component {
   constructor(props) {
@@ -21,9 +21,12 @@ class App extends Component {
       selectedReceipts: [],
       isAdmin: false,
       showProject: false,
+      isCreateProjectModalOpen: false
     };
     this._toggleCreateProject = this._toggleCreateProject.bind(this);
     this._addNewProject = this._addNewProject.bind(this);
+    this.toggleCreateProjectModal = this.toggleCreateProjectModal.bind(this);
+
   }
   componentWillMount() {
     fetch('/projects', {
@@ -145,6 +148,12 @@ class App extends Component {
     })
   }
 
+  toggleCreateProjectModal() {
+    this.setState({
+      isCreateProjectModalOpen: !this.state.isCreateProjectModalOpen
+    });
+  }
+
   render() {
 
     return (
@@ -157,11 +166,18 @@ class App extends Component {
           </div>
         </div>
         <nav className="drawer mdc-drawer mdc-drawer--permanent">
-          <div className="mdc-drawer__toolbar-spacer" onClick={this._toggleCreateProject}>
-            <h4>{this.state.isAdmin ? 'Create Projects' : 'Projects'} </h4>
+
+        {this.state.isAdmin ?
+          <div className="mdc-drawer__toolbar-spacer" onClick={this.toggleCreateProjectModal}>
+            <h4>Create Projects</h4>
           </div>
-          {this.state.isAdmin ?
-          (this.state.showProject ? <CreateProject _toggleCreateProject = {this._toggleCreateProject} addProject = {this._addNewProject} currentProject = {this.state.projects}/>: <a/>): <a/>}
+        :
+          <div className="mdc-drawer__toolbar-spacer">
+            <h4>Projects</h4>
+          </div>
+        }
+
+
           <div className="mdc-drawer__content">
             <nav className="mdc-list">
               <a id='project_all' className="mdc-list-item projectListItem" onClick= {() => this.allSectionClicked()}> All Projects </a>
@@ -172,9 +188,32 @@ class App extends Component {
           </div>
         </nav>
         <UserScreen selectedReceipts={this.state.selectedReceipts} isAdmin={this.state.isAdmin}/>
+
+        <ReactModal
+          className="modal flex-element"
+          isOpen={this.state.isCreateProjectModalOpen}
+          contentLabel="Modal"
+          style={{content: {backgroundColor:"white"} }}
+          >
+          <div>
+            <CreateProject toggleCreateProjectModal = {this.toggleCreateProjectModal} addProject = {this._addNewProject} currentProject = {this.state.projects}/>
+
+          </div>
+          <div>
+            <button className="btn close-button" onClick={this.toggleCreateProjectModal}>
+              Save
+            </button>
+          </div>
+        </ReactModal>
+
+
       </div>
     );
   }
 }
 
 export default App;
+
+
+
+          // (this.state.showProject ? <CreateProject _toggleCreateProject = {this.toggleCreateProjectModal} addProject = {this._addNewProject} currentProject = {this.state.projects}/>: <a/>): <a/>}
