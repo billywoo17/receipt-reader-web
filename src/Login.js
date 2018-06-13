@@ -70,7 +70,7 @@ class Login extends Component {
 
     return (
       <div className="hello">
-      <img id="loginBackground" src="https://files.slack.com/files-pri/T2G8TE2E5-FB56FCPED/1685022-black-and-white-texture-of-old-wooden-door-stock-photo-wood.jpg" />
+      <img id="loginBackground" src="http://cdn.purple.fr/8443516530e1413bfbacc89be51312d5/static.purple.fr/2015/06/L1049541-parc-820x550.jpg/820x550/L1049541-parc-820x550.jpg" />
          <div className="loginMain">
             <div className="loginHeader">
                <i className="fas fa-receipt"></i>

@@ -21,6 +21,7 @@ class Graph extends Component {
     });
     results.forEach(function(r, i) {
       r.color = colors[i%5];
+      r.value = r.value.toFixed(2);
     });
     return results;
   }
@@ -42,6 +43,7 @@ class Graph extends Component {
     });
     results.forEach(function(r, i) {
       r.color = colors[i%5];
+      r.value = r.value.toFixed(2);
     });
     return results;
   }
@@ -65,7 +67,7 @@ class Graph extends Component {
     });
     results.forEach(function(i){
       returnValue.labels.push(i.label);
-      returnValue.datasets[0].data.push(i.value);
+      returnValue.datasets[0].data.push(i.value.toFixed(2));
     });
     return returnValue;
   }
