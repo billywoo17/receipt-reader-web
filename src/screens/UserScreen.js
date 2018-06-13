@@ -58,7 +58,7 @@ class UserScreen extends Component {
           </ul>
 
           <div className="total-amount">
-            Reject Total: ${parseFloat(this.rejectedTotal(this.props.selectedReceipts)/100).toFixed(2)}<br/>
+            Rejected Total: ${parseFloat(this.rejectedTotal(this.props.selectedReceipts)/100).toFixed(2)}<br/>
             Approved Total: ${parseFloat(this.approvedTotal(this.props.selectedReceipts)/100).toFixed(2)}<br/>
             Total: ${parseFloat(this.total(this.props.selectedReceipts)/100).toFixed(2)}
           </div>

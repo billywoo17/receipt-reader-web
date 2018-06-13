@@ -71,11 +71,7 @@ class Login extends Component {
 
     return (
       <div className="hello">
-<<<<<<< HEAD
-      <img id="loginBackground" src="http://cdn.purple.fr/8443516530e1413bfbacc89be51312d5/static.purple.fr/2015/06/L1049541-parc-820x550.jpg/820x550/L1049541-parc-820x550.jpg" />
-=======
-      <img id="loginBackground" src="https://img00.deviantart.net/6ee0/i/2008/131/7/8/crumpled_white_paper_texture_by_melemel.jpg" />
->>>>>>> 02b472ae8c5ffaab07592fefd43f132a79fd0bc6
+      <img id="loginBackground" src="http://biteinto.info/wp-content/uploads/2016/02/rustic-white-wood-background-and-displaying-19-gallery-images-for-rustic-white-wood-texture-12.jpg" />
          <div className="loginMain">
             <div className="loginHeader">
                <i className="fas fa-receipt"></i>
