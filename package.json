@@ -31,7 +31,6 @@
     "test": "mocha",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://10.30.31.122:8080/",
 
   "devDependencies": {
     "mocha": "^5.2.0",
