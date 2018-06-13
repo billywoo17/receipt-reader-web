@@ -10,6 +10,21 @@ import UserScreen from './screens/UserScreen';
 import CreateProject from './component/CreateProject';
 require('dotenv').config();
 
+
+const customStyles = {
+  content : {
+    background: 'white',
+    marginLeft: '40%',
+    marginRight: '40%',
+    marginTop: '20%',
+    marginBottom: '20%'
+
+    // transform             : 'translate(-50%, -50%)'
+  }
+};
+
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -57,15 +72,15 @@ class App extends Component {
       })
       .then(res => res.json())
       .then(results => {
-        let receipts = results.receipts
+        let receipts = results.receipts;
         this.setState({
           receipts: results.receipts,
           isAdmin: results.isAdmin,
-        })
+        });
         if (!this.state.isAdmin) {
           this.setState({
             projects: results.receipts.map(receipt => receipt.project_name)
-          })
+          });
         }
 
         let projectObj = {};
@@ -85,8 +100,8 @@ class App extends Component {
         });
       })
       .catch((error) => {
-        console.log(error)
-      })
+        console.log(error);
+      });
   }
 
   componentDidMount() {
@@ -109,7 +124,7 @@ class App extends Component {
     });
     const project_list = document.getElementsByClassName('projectListItem');
     [].forEach.call(project_list, function (project) {
-      project.style.backgroundColor = 'white'
+      project.style.backgroundColor = 'white';
     });
     document.getElementById('project_all').style.backgroundColor = 'silver';
   }
@@ -139,19 +154,20 @@ class App extends Component {
   _toggleCreateProject() {
     this.setState({
       showProject: !this.state.showProject
-    })
+    });
   }
 
   _addNewProject(projectArray) {
     this.setState({
       projects: projectArray
-    })
+    });
   }
 
   toggleCreateProjectModal() {
     this.setState({
       isCreateProjectModalOpen: !this.state.isCreateProjectModalOpen
     });
+    console.log("isCreateProjectModalOpen: ", this.state.isCreateProjectModalOpen);
   }
 
   render() {
@@ -169,7 +185,7 @@ class App extends Component {
 
         {this.state.isAdmin ?
           <div className="mdc-drawer__toolbar-spacer" onClick={this.toggleCreateProjectModal}>
-            <h4>Create Projects</h4>
+            <button className="btn btn-lg project-button">Create Projects</button>
           </div>
         :
           <div className="mdc-drawer__toolbar-spacer">
@@ -193,17 +209,14 @@ class App extends Component {
           className="modal flex-element"
           isOpen={this.state.isCreateProjectModalOpen}
           contentLabel="Modal"
-          style={{content: {backgroundColor:"white"} }}
+          style={customStyles}
+          shouldCloseOnOverlayClick={true}
+          onRequestClose={this.toggleCreateProjectModal}
           >
           <div>
             <CreateProject toggleCreateProjectModal = {this.toggleCreateProjectModal} addProject = {this._addNewProject} currentProject = {this.state.projects}/>
+          </div>
 
-          </div>
-          <div>
-            <button className="btn close-button" onClick={this.toggleCreateProjectModal}>
-              Save
-            </button>
-          </div>
         </ReactModal>
 
 
@@ -214,6 +227,3 @@ class App extends Component {
 
 export default App;
 
-
-
-          // (this.state.showProject ? <CreateProject _toggleCreateProject = {this.toggleCreateProjectModal} addProject = {this._addNewProject} currentProject = {this.state.projects}/>: <a/>): <a/>}
