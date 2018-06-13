@@ -27,11 +27,12 @@ class Login extends Component {
   }
 
   submitForm() {
+    console.log(URL.link)
     const aBody = JSON.stringify({
       email: this.state.email,
       password: this.state.password,
     });
-    fetch('/user/login', {
+    fetch(`/user/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -70,7 +71,11 @@ class Login extends Component {
 
     return (
       <div className="hello">
+<<<<<<< HEAD
       <img id="loginBackground" src="http://cdn.purple.fr/8443516530e1413bfbacc89be51312d5/static.purple.fr/2015/06/L1049541-parc-820x550.jpg/820x550/L1049541-parc-820x550.jpg" />
+=======
+      <img id="loginBackground" src="https://img00.deviantart.net/6ee0/i/2008/131/7/8/crumpled_white_paper_texture_by_melemel.jpg" />
+>>>>>>> 02b472ae8c5ffaab07592fefd43f132a79fd0bc6
          <div className="loginMain">
             <div className="loginHeader">
                <i className="fas fa-receipt"></i>
