@@ -22,13 +22,14 @@ class CreateProject extends Component {
         project_name: this.state.project,
       }),
     }).then((results) =>{
-      this.props._toggleCreateProject()
+      console.log("we are in here", results);
+      this.props.toggleCreateProjectModal();
     }).catch((err) => {
       alert("can't update status", err);
     });
-    let currentProject = this.props.currentProject
-    currentProject.unshift(this.state.project)
-    this.props.addProject(currentProject)
+    let currentProject = this.props.currentProject;
+    currentProject.unshift(this.state.project);
+    this.props.addProject(currentProject);
 
   }
 }
@@ -38,9 +39,16 @@ class CreateProject extends Component {
   }
   render() {
     return (
-      <div>
-      <input placeholder="Project Name" type="text" onChange={this._project_input} className="createProject mdc-text-field__input"/>
-        <button type="button" className="btn btn-lg signInButton" onClick={this.submitForm}>Create</button>
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <h4 style={{order:1, margin: '1.4em 2em 0 2em', fontWeight: 'bold'}}>Create a Project </h4>
+        <div style={{order:2, margin: '1em 2em 1em 2em'}}>
+          <input placeholder="Project Name" type="text" onChange={this._project_input} className="mdc-text-field__input"/>
+        </div>
+
+        <div style={{order:3, margin: '0 2em 2em 2em'}}>
+          <button type="button" className="btn btn-lg signInButton" onClick={this.submitForm}>Create</button>
+        </div>
+
       </div>
       );
   }

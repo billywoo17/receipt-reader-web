@@ -1083,6 +1083,17 @@ a.mdc-list-item {
   background-color: white;
   color: #0ba5a8; }
 
+.project-button {
+  float: right;
+  margin: 0 20px 0 16px;
+  background-color: #0ba5a8;
+  color: white;
+  font-family: 'Nunito Sans', sans-serif; }
+
+.project-button:hover {
+  background-color: white;
+  color: #0ba5a8; }
+
 .right-title-bar {
   float: right;
   padding: 0 4em;
@@ -1113,6 +1124,7 @@ a.mdc-list-item {
 
 .graph-title {
   margin: 5px auto;
+  font-weight: bold;
   text-align: center; }
 
 .cat-chart {

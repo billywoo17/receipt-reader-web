@@ -8,7 +8,22 @@ import ReactModal from 'react-modal';
 import Receipt from './Receipt.js';
 import UserScreen from './screens/UserScreen';
 import CreateProject from './component/CreateProject';
-require('dotenv').config()
+require('dotenv').config();
+
+
+const customStyles = {
+  content : {
+    background: 'white',
+    marginLeft: '40%',
+    marginRight: '40%',
+    marginTop: '20%',
+    marginBottom: '20%'
+
+    // transform             : 'translate(-50%, -50%)'
+  }
+};
+
+
 
 class App extends Component {
   constructor(props) {
@@ -21,9 +36,12 @@ class App extends Component {
       selectedReceipts: [],
       isAdmin: false,
       showProject: false,
+      isCreateProjectModalOpen: false
     };
     this._toggleCreateProject = this._toggleCreateProject.bind(this);
     this._addNewProject = this._addNewProject.bind(this);
+    this.toggleCreateProjectModal = this.toggleCreateProjectModal.bind(this);
+
   }
   componentWillMount() {
     fetch('/projects', {
@@ -54,15 +72,15 @@ class App extends Component {
       })
       .then(res => res.json())
       .then(results => {
-        let receipts = results.receipts
+        let receipts = results.receipts;
         this.setState({
           receipts: results.receipts,
           isAdmin: results.isAdmin,
-        })
+        });
         if (!this.state.isAdmin) {
           this.setState({
             projects: results.receipts.map(receipt => receipt.project_name)
-          })
+          });
         }
 
         let projectObj = {};
@@ -82,8 +100,8 @@ class App extends Component {
         });
       })
       .catch((error) => {
-        console.log(error)
-      })
+        console.log(error);
+      });
   }
 
   componentDidMount() {
@@ -106,7 +124,7 @@ class App extends Component {
     });
     const project_list = document.getElementsByClassName('projectListItem');
     [].forEach.call(project_list, function (project) {
-      project.style.backgroundColor = 'white'
+      project.style.backgroundColor = 'white';
     });
     document.getElementById('project_all').style.backgroundColor = 'silver';
   }
@@ -136,13 +154,20 @@ class App extends Component {
   _toggleCreateProject() {
     this.setState({
       showProject: !this.state.showProject
-    })
+    });
   }
 
   _addNewProject(projectArray) {
     this.setState({
       projects: projectArray
-    })
+    });
+  }
+
+  toggleCreateProjectModal() {
+    this.setState({
+      isCreateProjectModalOpen: !this.state.isCreateProjectModalOpen
+    });
+    console.log("isCreateProjectModalOpen: ", this.state.isCreateProjectModalOpen);
   }
 
   render() {
@@ -157,11 +182,18 @@ class App extends Component {
           </div>
         </div>
         <nav className="drawer mdc-drawer mdc-drawer--permanent">
-          <div className="mdc-drawer__toolbar-spacer" onClick={this._toggleCreateProject}>
-            <h4>{this.state.isAdmin ? 'Create Projects' : 'Projects'} </h4>
+
+        {this.state.isAdmin ?
+          <div className="mdc-drawer__toolbar-spacer" onClick={this.toggleCreateProjectModal}>
+            <button className="btn btn-lg project-button">Create Projects</button>
           </div>
-          {this.state.isAdmin ?
-          (this.state.showProject ? <CreateProject _toggleCreateProject = {this._toggleCreateProject} addProject = {this._addNewProject} currentProject = {this.state.projects}/>: <a/>): <a/>}
+        :
+          <div className="mdc-drawer__toolbar-spacer">
+            <h4>Projects</h4>
+          </div>
+        }
+
+
           <div className="mdc-drawer__content">
             <nav className="mdc-list">
               <a id='project_all' className="mdc-list-item projectListItem" onClick= {() => this.allSectionClicked()}> All Projects </a>
@@ -172,9 +204,26 @@ class App extends Component {
           </div>
         </nav>
         <UserScreen selectedReceipts={this.state.selectedReceipts} isAdmin={this.state.isAdmin}/>
+
+        <ReactModal
+          className="modal flex-element"
+          isOpen={this.state.isCreateProjectModalOpen}
+          contentLabel="Modal"
+          style={customStyles}
+          shouldCloseOnOverlayClick={true}
+          onRequestClose={this.toggleCreateProjectModal}
+          >
+          <div>
+            <CreateProject toggleCreateProjectModal = {this.toggleCreateProjectModal} addProject = {this._addNewProject} currentProject = {this.state.projects}/>
+          </div>
+
+        </ReactModal>
+
+
       </div>
     );
   }
 }
 
 export default App;
+
