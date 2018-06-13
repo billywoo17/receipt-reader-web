@@ -26,7 +26,7 @@ class App extends Component {
     this._addNewProject = this._addNewProject.bind(this);
   }
   componentWillMount() {
-    fetch('http://ec2-18-188-40-128.us-east-2.compute.amazonaws.com:8080/projects', {
+    fetch('https://api.paperless.stream/projects', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ class App extends Component {
 
     let token = localStorage.getItem('jwtToken');
     let query = localStorage.getItem('isAdmin') ? "users" : "user"
-    let route = `http://ec2-18-188-40-128.us-east-2.compute.amazonaws.com:8080/${query}/receipts`
+    let route = `https://api.paperless.stream/${query}/receipts`
 
     fetch(route, {
         method: 'GET',
@@ -144,7 +144,6 @@ class App extends Component {
       projects: projectArray
     })
   }
-
   render() {
 
     return (

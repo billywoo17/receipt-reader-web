@@ -32,7 +32,7 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password,
     });
-    fetch(`http://ec2-18-188-40-128.us-east-2.compute.amazonaws.com:8080/user/login`, {
+    fetch(`https://api.paperless.stream/user/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

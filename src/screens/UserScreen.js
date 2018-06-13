@@ -54,7 +54,7 @@ class UserScreen extends Component {
         </div>: <a/> }
         <div className="list-container">
           <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list main-list">
-            { this.props.selectedReceipts.map(receipt => <Receipt { ...receipt } isAdmin={this.props.isAdmin}/> )}
+            { this.props.selectedReceipts.map(receipt => <Receipt { ...receipt } isAdmin={this.props.isAdmin} _changeReceiptStatus={this.props._changeReceiptStatus}/> )}
           </ul>
 
           <div className="total-amount">

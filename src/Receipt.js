@@ -29,7 +29,7 @@ class Receipt extends Component {
   }
 
   _updateServer(receipt_id, status_id) {
-    return fetch('http://ec2-18-188-40-128.us-east-2.compute.amazonaws.com:8080/users/receipt/status', {
+    return fetch('https://api.paperless.stream/users/receipt/status', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
