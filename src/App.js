@@ -44,8 +44,9 @@ class App extends Component {
 
   }
   componentWillMount() {
-    fetch('/projects', {
+    fetch('https://api.paperless.stream/projects', {
         method: 'GET',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -61,10 +62,11 @@ class App extends Component {
 
     let token = localStorage.getItem('jwtToken');
     let query = localStorage.getItem('isAdmin') ? "users" : "user"
-    let route = `/${query}/receipts`
+    let route = `https://api.paperless.stream/${query}/receipts`
 
     fetch(route, {
         method: 'GET',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -169,7 +171,6 @@ class App extends Component {
     });
     console.log("isCreateProjectModalOpen: ", this.state.isCreateProjectModalOpen);
   }
-
   render() {
 
     return (

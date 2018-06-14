@@ -54,11 +54,11 @@ class UserScreen extends Component {
         </div>: <a/> }
         <div className="list-container">
           <ul className="mdc-list mdc-list--two-line mdc-list--avatar-list main-list">
-            { this.props.selectedReceipts.map(receipt => <Receipt { ...receipt } isAdmin={this.props.isAdmin}/> )}
+            { this.props.selectedReceipts.map(receipt => <Receipt { ...receipt } isAdmin={this.props.isAdmin} _changeReceiptStatus={this.props._changeReceiptStatus}/> )}
           </ul>
 
           <div className="total-amount">
-            Reject Total: ${parseFloat(this.rejectedTotal(this.props.selectedReceipts)/100).toFixed(2)}<br/>
+            Rejected Total: ${parseFloat(this.rejectedTotal(this.props.selectedReceipts)/100).toFixed(2)}<br/>
             Approved Total: ${parseFloat(this.approvedTotal(this.props.selectedReceipts)/100).toFixed(2)}<br/>
             Total: ${parseFloat(this.total(this.props.selectedReceipts)/100).toFixed(2)}
           </div>

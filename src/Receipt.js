@@ -18,11 +18,8 @@ class Receipt extends Component {
     this.approvedStatus = this.approvedStatus.bind(this);
     this.deniedStatus = this.deniedStatus.bind(this);
   }
-  //look into this more. kind of hacky
-  componentDidUpdate(prevProps) {
-    if (prevProps.status_id !== this.props.status_id && this.props.status_id !== this.state.status) {
-      this.setState({status: this.props.status_id});
-    }
+  componentWillReceiveProps(newProps) {
+    this.setState({status: newProps.status_id});
   }
   toggleReceiptModal() {
     this.setState({
@@ -33,8 +30,9 @@ class Receipt extends Component {
 
 
   _updateServer(receipt_id, status_id) {
-    return fetch('/users/receipt/status', {
+    return fetch('https://api.paperless.stream/users/receipt/status', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },

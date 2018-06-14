@@ -24,14 +24,14 @@
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "start-js": "react-scripts start",
+    "start-js": "react-scripts start --reset-cache",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "mocha",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://10.30.32.255:8080",
+ "proxy": "http://localhost:8080",
   "devDependencies": {
     "mocha": "^5.2.0",
     "webpack-config": "^7.5.0",

@@ -3,8 +3,7 @@ import './Login.css';
 import {Link} from 'react-router-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Redirect, Router} from 'react-router-dom';
-const dotenv = require('dotenv')
-
+require('dotenv');
 
 class Login extends Component {
   constructor(props){
@@ -31,8 +30,9 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password,
     });
-    fetch('/user/login', {
+    fetch(process.env.REACT_APP_URL + '/user/login', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -70,7 +70,7 @@ class Login extends Component {
 
     return (
       <div className="hello">
-      <img id="loginBackground" src="https://files.slack.com/files-pri/T2G8TE2E5-FB56FCPED/1685022-black-and-white-texture-of-old-wooden-door-stock-photo-wood.jpg" />
+      <img id="loginBackground" src="http://biteinto.info/wp-content/uploads/2016/02/rustic-white-wood-background-and-displaying-19-gallery-images-for-rustic-white-wood-texture-12.jpg" />
          <div className="loginMain">
             <div className="loginHeader">
                <i className="fas fa-receipt"></i>

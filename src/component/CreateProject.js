@@ -13,8 +13,9 @@ class CreateProject extends Component {
   submitForm() {
 
     if(this.state.project){
-    fetch('/projects', {
+    fetch('https://api.paperless.stream/projects', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
