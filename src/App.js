@@ -190,7 +190,7 @@ class App extends Component {
 
         {this.state.isAdmin ?
           <div className="mdc-drawer__toolbar-spacer" onClick={this.toggleCreateProjectModal}>
-            <button className="btn btn-lg project-button">Create Projects</button>
+            <button className="btn btn-lg project-button">Create Project</button>
           </div>
         :
           <div className="mdc-drawer__toolbar-spacer">

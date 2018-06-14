@@ -88,7 +88,7 @@ class Graph extends Component {
         </div>
         <div className="user-chart">
           <p class="graph-title">Employees</p>
-          <BarChart data={this.usersChart(this.props.selectedReceipts)}/>
+          <BarChart data={this.usersChart(this.props.selectedReceipts)} options={{showTooltips: false}}/>
         </div>
       </div>
       );
