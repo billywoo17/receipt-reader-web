@@ -29,6 +29,8 @@ class App extends Component {
     fetch('https://api.paperless.stream/projects', {
         method: 'GET',
         credentials: 'include',
+        cache: 'no-cache',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -49,6 +51,8 @@ class App extends Component {
     fetch(route, {
         method: 'GET',
         credentials: 'include',
+        cache: 'no-cache',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`

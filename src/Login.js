@@ -35,6 +35,8 @@ class Login extends Component {
     fetch(`https://api.paperless.stream/user/login`, {
       method: 'POST',
       credentials: 'include',
+      cache: 'no-cache',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },

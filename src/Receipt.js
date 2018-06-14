@@ -32,6 +32,8 @@ class Receipt extends Component {
     return fetch('https://api.paperless.stream/users/receipt/status', {
       method: 'POST',
       credentials: 'include',
+      cache: 'no-cache',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },

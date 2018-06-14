@@ -16,6 +16,8 @@ class CreateProject extends Component {
     fetch('https://api.paperless.stream/projects', {
       method: 'POST',
       credentials: 'include',
+      cache: 'no-cache',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
