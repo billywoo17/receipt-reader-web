@@ -14,10 +14,10 @@ require('dotenv').config();
 const customStyles = {
   content : {
     background: 'white',
-    marginLeft: '40%',
-    marginRight: '40%',
-    marginTop: '20%',
-    marginBottom: '20%'
+    marginLeft: '30%',
+    marginRight: '30%',
+    marginTop: '15%',
+    marginBottom: '15%'
 
     // transform             : 'translate(-50%, -50%)'
   }
@@ -218,7 +218,7 @@ class App extends Component {
           shouldCloseOnOverlayClick={true}
           onRequestClose={this.toggleCreateProjectModal}
           >
-          <div>
+          <div style={{margin: 'auto', width: '80%'}} >
             <CreateProject toggleCreateProjectModal = {this.toggleCreateProjectModal} addProject = {this._addNewProject} currentProject = {this.state.projects}/>
           </div>
 
