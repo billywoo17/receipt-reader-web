@@ -72,7 +72,7 @@ class Login extends Component {
 
     return (
       <div className="hello">
-      <img id="loginBackground" src="http://biteinto.info/wp-content/uploads/2016/02/rustic-white-wood-background-and-displaying-19-gallery-images-for-rustic-white-wood-texture-12.jpg" />
+      <img id="loginBackground" src= "https://s3.ca-central-1.amazonaws.com/lhl-final-receipt/background.jpg" />
          <div className="loginMain">
             <div className="loginHeader">
                <i className="fas fa-receipt"></i>

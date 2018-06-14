@@ -220,3 +220,17 @@
 #project_all:hover {
   background-color: Lavender;
 }
+
+
+@media only screen and (max-width: 800px) {
+  #companyName { display: none; }  /* hide it elsewhere */
+  #navbar  { display: none; }
+  .modal-pic { display: none; }
+  .user-info { display: none; }
+  .right-title-bar {padding:0em}
+}
+
+@media only screen and (max-width: 350px) {
+  .logout-button { width: 100px; }  /* hide it elsewhere */
+}
+

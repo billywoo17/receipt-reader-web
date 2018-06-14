@@ -180,13 +180,13 @@ class App extends Component {
     return (
       <div className ="flex-element">
         <div className= "title">
-          <h1 className = "product-name"> <i className="fas fa-receipt"></i> Paperless</h1>
+          <h1 className = "product-name"> <i className="fas fa-receipt"></i> <span id="companyName">Paperless</span></h1>
           <div className = "right-title-bar">
             <h4 className = "user-info"> Hello, {this.state.username}</h4>
             <button className="btn btn-lg logout-button" onClick={this.logout}>Log Out</button>
           </div>
         </div>
-        <nav className="drawer mdc-drawer mdc-drawer--permanent">
+        <nav id="navbar" className="drawer mdc-drawer mdc-drawer--permanent">
 
         {this.state.isAdmin ?
           <div className="mdc-drawer__toolbar-spacer" onClick={this.toggleCreateProjectModal}>
