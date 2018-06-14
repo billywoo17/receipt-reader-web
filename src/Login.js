@@ -3,8 +3,7 @@ import './Login.css';
 import {Link} from 'react-router-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Redirect, Router} from 'react-router-dom';
-const dotenv = require('dotenv')
-
+require('dotenv');
 
 class Login extends Component {
   constructor(props){
@@ -27,12 +26,11 @@ class Login extends Component {
   }
 
   submitForm() {
-    console.log(URL.link)
     const aBody = JSON.stringify({
       email: this.state.email,
       password: this.state.password,
     });
-    fetch(`https://api.paperless.stream/user/login`, {
+    fetch(process.env.REACT_APP_URL + '/user/login', {
       method: 'POST',
       credentials: 'include',
       cache: 'no-cache',
